@@ -25,3 +25,31 @@ body {
     text-wrap: balance;
   }
 }
+
+.elipse1 {
+  border-radius: 717px;
+  background: radial-gradient(
+    41.99% 40.23% at 50% 50%,
+    #e9fcfd 0%,
+    #f6dbc3 58%,
+    #9b0926 100%
+  );
+}
+
+.elipse2 {
+ border-radius: 591px;
+background: radial-gradient(98.29% 50% at 50.08% 50%, #9B0926 11%, #EFBE93 55.5%, #D7DAF8 87.5%);
+
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.01);
+
+backdrop-filter: blur(80px);
+}
+
+
+.borde{
+  border: 5px solid transparent;
+  border-image: linear-gradient(to right, black 33%, rgba(255, 255, 255, 0) 33%) 5;
+}

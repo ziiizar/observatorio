@@ -1,0 +1,42 @@
+{"users":[
+     {
+      "id": 1,
+      "password": "pbkdf2_sha256$150000$abc123$K4udG56hswWEprTC9F8KwHMRBNzmvg5tLoZkcPC3XXo=",
+      "last_login": "2024-09-08T14:30:00Z",
+      "is_superuser": true,
+      "username": "admin_user",
+      "first_name": "Admin",
+      "last_name": "User",
+      "email": "admin@example.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "password": "pbkdf2_sha256$150000$def456$LzHtOj4qL47GyTQKLwRtoQhJRtLcgRoPVxnsDk3cbvI=",
+      "last_login": "2024-09-09T08:15:00Z",
+      "is_superuser": false,
+      "username": "john_doe",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "johndoe@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-02-20T11:45:00Z"
+    },
+    {
+      "id": 3,
+      "password": "pbkdf2_sha256$150000$ghi789$JgYfdt6rKMLMwWc4SYvdVjxUEwErMnETbhjPKctMnA0=",
+      "last_login": "2024-09-07T17:50:00Z",
+      "is_superuser": false,
+      "username": "jane_smith",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "email": "janesmith@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-12T09:30:00Z"
+    }
+  ]
+}
