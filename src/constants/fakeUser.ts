@@ -1,1 +1,1 @@
-export const FAKEUSERINDEX = 0
+export const FAKEUSERINDEX = undefined

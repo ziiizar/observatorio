@@ -5,6 +5,7 @@ import PowerPointCard from "./PowerPointCard";
 import { getAuth } from "@/services/getAuth";
 import { Rectangulo } from "@/Icons/Rectangulo";
 import { FAKEUSERINDEX } from "@/constants/fakeUser";
+import WhiteCircle from "@/Icons/WhiteCircle";
 
 const HeroRight = async () => {
 
@@ -26,10 +27,14 @@ const HeroRight = async () => {
           <div className="flex flex-col justify-between pb-8 w-1/2 ">
             <article className="bg-black rounded-xl w-full h-36 flex flex-col justify-between px-4 py-2  items-center text-white z-10 shadow-shadowBlack">
               <strong className="text-2xl">+200</strong>
-              <p className="text-center">Observatorios activos</p>
+              <p className="text-center">Observatorios Activos</p>
               <div className="w-full flex gap-4 place-content-center items-center">
-                <div className="size-6 rounded-full bg-white"></div>
-                <Button className="text-black">Unete</Button>
+                <div className="flex relative">
+                  <WhiteCircle ></WhiteCircle>
+                  <WhiteCircle className={"-ml-8"}></WhiteCircle >
+                  <WhiteCircle className={"-ml-8"}></WhiteCircle>
+                </div>
+                <Button className="text-black px-4">Únete</Button>
               </div>
             </article>
             <article className=" bg-black rounded-xl size-20 self-center flex place-content-center items-center z-10 shadow-shadowBlack">
@@ -40,10 +45,10 @@ const HeroRight = async () => {
           <div className="flex items-end w-1/2">
             <article className="bg-black rounded-xl  w-full flex flex-col px-2 py-4 items-center text-white gap-3 z-10 shadow-shadowBlack ">
               <strong>Garantizamos</strong>
-             <PowerPointCard></PowerPointCard>
-             <PowerPointCard></PowerPointCard>
-             <PowerPointCard></PowerPointCard>
-             <PowerPointCard></PowerPointCard>
+             <PowerPointCard text={"Observaciones Actualizadas"}></PowerPointCard>
+             <PowerPointCard text={"Innovación y Desarrollo"}></PowerPointCard>
+             <PowerPointCard text={'Información Confiable'}></PowerPointCard>
+             <PowerPointCard text={"Accesibilidad Universal"}></PowerPointCard>
             </article>
           </div>
           

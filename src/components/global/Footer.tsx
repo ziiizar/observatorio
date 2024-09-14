@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-black/95 text-white py-12 relative mt-10">
       <div className="absolute left-1/2 -translate-x-1/2 -top-8">
         <Link
-          href="/get-insurance"
+          href="/"
           className="bg-burgundy-900 text-white px-8 py-4 rounded-full text-xl font-semibold flex items-center"
         >
           Regístrate en nuestro observatorio
@@ -46,27 +46,27 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Paginas</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/pagina1" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Pagina1
                 </Link>
               </li>
               <li>
-                <Link href="/pagina2" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Pagina2
                 </Link>
               </li>
               <li>
-                <Link href="/pagina3" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Pagina3
                 </Link>
               </li>
               <li>
-                <Link href="/pagina4" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Pagina4
                 </Link>
               </li>
               <li>
-                <Link href="/pagina5" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Pagina5
                 </Link>
               </li>

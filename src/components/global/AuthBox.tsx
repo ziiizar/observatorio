@@ -9,11 +9,11 @@ const AuthBox = ({ user }) => {
     <div className="flex place-content-end items-center mr-3">
       {user ? (
         <Button  >
-          Cerrar sesion
+          Cerrar sesión
         </Button>
       ) : (
         <Button className="w-28">
-          <Link className="w-full" href={routes.login}>Iniciar sesion</Link>
+          <Link className="w-full" href={routes.login}>Iniciar sesión</Link>
         </Button>
       )}{" "}
     </div>
