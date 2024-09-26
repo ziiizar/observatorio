@@ -2,14 +2,19 @@ import Button from "@/components/ui/Button";
 import { Check, SearchBook } from "@/Icons/Landing";
 import AuthBox from "@/components/global/AuthBox";
 import PowerPointCard from "./PowerPointCard";
+import { getFakeAuth } from "@/services/getFakeAuth";
 import { getAuth } from "@/services/getAuth";
 import { Rectangulo } from "@/Icons/Rectangulo";
 import { FAKEUSERINDEX } from "@/constants/fakeUser";
 import WhiteCircle from "@/Icons/WhiteCircle";
+import  Cookies from 'js-cookie'
 
 const HeroRight = async () => {
-
-  const user = await getAuth(FAKEUSERINDEX)
+  // const token = Cookies.get('access_token');
+  // console.log('token hero right')
+  // console.log(token)
+  // const user = await getFakeAuth(FAKEUSERINDEX)
+  const user = await getAuth()
   return (
     <div className="rounded-lg bg-burgundy-950 w-[500px]  relative overflow-hidden">
 

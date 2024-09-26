@@ -2,13 +2,14 @@
 
 import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
+import { logout } from "@/services/logout";
 import Link from "next/link";
 
 const AuthBox = ({ user }) => {
   return (
     <div className="flex place-content-end items-center mr-3">
       {user ? (
-        <Button  >
+        <Button  onClick={logout}>
           Cerrar sesión
         </Button>
       ) : (

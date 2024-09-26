@@ -5,8 +5,6 @@ import { stopMonitoring } from "@/services/stopMonitoring";
 import { Fuente } from '@/types/fuente';
 const FuenteCard = ({fuente}: {fuente:Fuente}) => {
 
-console.log('typeof(fuente.id)')
-console.log(typeof(fuente.id))
     
     const handelStart = (fuenteId) => {
         startMonitoring(fuenteId)

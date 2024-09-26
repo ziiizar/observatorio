@@ -1,16 +1,10 @@
 import FuenteCard from "@/components/Fuentes/FuenteCard";
 import { fetchFuentes } from "@/data/fuentes";
-import useAuth from "@/hooks/useAuth";
 import { Fuente } from "@/types/fuente";
 
 const Page = async () => {
   const fuentes: Fuente[] = await fetchFuentes();
 
-  // const user = useAuth();
-
-  // if (!user) {
-  //   return <p>Loading...</p>;
-  // }
 
 
 

@@ -1,12 +1,19 @@
+import { getFakeAuth } from "@/services/getFakeAuth";
 import { getAuth } from "@/services/getAuth";
 import { AUTH_ROUTES, PUBLIC_ROUTES, routes, ADMIN_ROUTES } from "./constants/routes";
 import { FAKEUSERINDEX } from "./constants/fakeUser";
 
 export default async function auth(req) {
   const { nextUrl } = req;
-
+  // const token = req.cookies.get('access_token');
+  
+  // console.log('token middleware')
+  // console.log(token)
+  
   const simulatedUserPosition = FAKEUSERINDEX; 
-  const user = await getAuth(simulatedUserPosition);
+
+  // const user = await getFakeAuth(FAKEUSERINDEX);
+  const user = await getAuth();
 
   const isLoggedIn = !!user; // Comprueba si existe un usuario
   const isAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname);
