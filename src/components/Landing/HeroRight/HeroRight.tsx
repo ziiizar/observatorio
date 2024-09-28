@@ -22,7 +22,7 @@ const HeroRight = async () => {
       <div className="absolute -top-[30%] -right-[40%]  w-full h-[300px]  elipse1"></div>
 
       <div className="flex flex-col gap-4 h-full w-full glass px-4 py-4 ">
-        <div className="w-32 self-end">
+        <div className="w-full self-end">
           <AuthBox user={user}></AuthBox>
         </div>
 

@@ -11,8 +11,7 @@ export default async function Home ()  {
   const landing = true;
 
 const user = await getAuth()
-console.log('user')
-console.log(user)
+
 
   return (
     <>

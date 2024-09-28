@@ -4,11 +4,16 @@ import { Key, User, Eye } from "@/Icons/Auth";
 import { LoginSchema, TSLoginSchema } from "@/schemas/auth";
 import { login } from "@/services/login";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
+import { routes } from "@/constants/routes";
 
 const LoginForm = () => {
+
+  const router = useRouter();
+
+
   const {
     register,
     handleSubmit,
@@ -22,7 +27,8 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: TSLoginSchema) => {
-    await login(data).then((resp) => console.log(resp));
+    await login(data).then((resp) => {console.log(resp),resp.success && router.push(routes.home)});
+    
   };
 
   return (

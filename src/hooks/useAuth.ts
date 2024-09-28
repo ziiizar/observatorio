@@ -26,7 +26,6 @@ const useAuth = (): UseUserFromTokenResult => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = Cookies.get("access_token");
-      console.log(token);
       if (!token) {
         setError("No token found");
         setLoading(false);

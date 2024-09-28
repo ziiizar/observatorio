@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn( 'antialiased bg-white text-black min-h-screen', outfit.className)}
+        className={cn( 'antialiased bg-white text-black min-h-screen w-full', outfit.className)}
       >
         {children}
       </body>
