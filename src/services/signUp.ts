@@ -6,10 +6,11 @@ import { TSSignUpSchema } from "@/schemas/auth";
 
 
 export const signup = async (data: TSSignUpSchema) => {
-  const { password, adminId,email,firstName,lastName,organization,rol } = data;
+  const { password,email,first_name,last_name,organization,role, username } = data;
 
+  console.log(data)
   try {
-    const response = await axiosInstance.post("signup", { password, email,firstName,lastName,organization,rol });
+    const response = await axiosInstance.post("signup", { password, email,first_name,last_name,organization,role, username });
 
     if (!response) throw new Error("Error during signup");
 
@@ -17,6 +18,6 @@ export const signup = async (data: TSSignUpSchema) => {
     return { success: "Cuenta creada con exito" };
     // redirect("/");
   } catch (error) {
-    return { error: "Signup failed:" };
+    return { error: "Signup failed:"+ (error.response?.data?.detail || error.message) };
   }
 };

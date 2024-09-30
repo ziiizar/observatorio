@@ -10,6 +10,7 @@ import Button from "@/components/ui/Button";
 
 const UsersTable = async () => {
   const users: User[] = await fetchAllUsers();
+  console.log(users)
 
   return (
     <Table className="">
@@ -37,8 +38,8 @@ const UsersTable = async () => {
             <TableCell className="border-l-2 border-dusty-gray-300">{user.first_name}</TableCell>
             <TableCell className="border-l-2 border-dusty-gray-300">{user.last_name}</TableCell>
             <TableCell className="border-l-2 border-dusty-gray-300">{user.email}</TableCell>
-            <TableCell className="border-l-2 border-dusty-gray-300">{user.email}</TableCell>
-            <TableCell className="border-x-2 border-dusty-gray-300">{user.email}</TableCell>
+            <TableCell className="border-l-2 border-dusty-gray-300">{user.userprofile?.organization}</TableCell>
+            <TableCell className="border-x-2 border-dusty-gray-300">{user.userprofile?.role}</TableCell>
           </TableRow>
         ))}
       </TableBody>

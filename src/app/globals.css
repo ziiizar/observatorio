@@ -65,3 +65,8 @@ backdrop-filter: blur(80px);
   "aside main ";
 
 }
+
+.backgroundLogin {
+  border-radius: 24px;
+background: url("/login.png") lightgray 50% / cover no-repeat;
+}

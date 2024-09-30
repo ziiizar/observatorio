@@ -11,14 +11,14 @@ export const LoginSchema = z.object({
 export type TSLoginSchema = z.infer<typeof LoginSchema>
 
 
-export const SignUpSchema =z.object({
-    adminId: z.string(),
-    email: z.string(),
-    firstName: z.string(),
-    lastName: z.string(),
+export const SignUpSchema = z.object({
+    email: z.string().email(),
+    username: z.string(),
+    first_name: z.string(),
+    last_name: z.string(),
     organization: z.string(),
     password: z.string(),
-    rol: z.string(),
+    role: z.string(),
 })
 
 export type TSSignUpSchema = z.infer<typeof SignUpSchema>

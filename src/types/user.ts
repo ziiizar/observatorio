@@ -6,5 +6,9 @@ export type User = {
     email: string;
     isActive: boolean;
     is_superuser: boolean; 
+    userprofile: {
+      role: string,
+      organization: string
+    }
   };
   

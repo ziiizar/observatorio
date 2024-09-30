@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Logo from "@/public/Logo.png";
+import { routes } from "@/constants/routes";
 export default function Footer() {
   return (
     <footer className="bg-black/95 text-white py-12 relative mt-10">
       <div className="absolute left-1/2 -translate-x-1/2 -top-8">
         <Link
-          href="/"
+          href={routes.login}
           className="bg-burgundy-900 text-white px-8 py-4 rounded-full text-xl font-semibold flex items-center"
         >
-          Regístrate en nuestro observatorio
+          Inicia Sesión en nuestro observatorio
           <svg
             className="w-6 h-6 ml-2"
             fill="none"

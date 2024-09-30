@@ -23,11 +23,12 @@ const SignUpForm = () => {
     defaultValues: {
       
       password: "",
+      role: 'user'
     },
   });
 
   const onSubmit = async (data: TSSignUpSchema) => {
-    await signup(data).then((resp) => {console.log(resp),resp.success && router.push(routes.home)});
+    await signup(data).then((resp) => {console.log(resp)});
     
   };
 
@@ -47,12 +48,21 @@ const SignUpForm = () => {
             name="email"
           />
         </label>
+        <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="email">
+          <User></User>
+          <input className="outline-none w-full"
+            placeholder="Username"
+            {...register("username")}
+            type="text"
+            name="username"
+          />
+        </label>
         <div className="flex gap-4">
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="firstName">
           <User></User>
           <input className="outline-none w-full"
             placeholder="Nombre"
-            {...register("firstName")}
+            {...register("first_name")}
             type="text"
             name="firstName"
           />
@@ -61,7 +71,7 @@ const SignUpForm = () => {
           <User></User>
           <input className="outline-none w-full"
             placeholder="Apellidos"
-            {...register("lastName")}
+            {...register("last_name")}
             type="text"
             name="lastName"
           />
@@ -90,13 +100,13 @@ const SignUpForm = () => {
           <Key></Key>
           <input  className="outline-none w-full"
             placeholder="Repetir Contraseña"
-            {...register("password")}
+            // {...register("password")}
             type="text"
             name="repeatPassword"
           />
           <Eye></Eye>
         </label>
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar Usuario</Button>
+        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar Fuente</Button>
       </form>
     </div>
   );
