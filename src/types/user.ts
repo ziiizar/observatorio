@@ -1,3 +1,13 @@
+export const userRole = {
+  ADMIN: 'admin',
+  USER: 'user',
+  OBSERVADOR: 'observador',
+  DIRECTIVO: 'directivo',
+} as const;
+
+export type UserRole = typeof userRole[keyof typeof userRole];
+
+
 export type User = {
     id: string
     username: string;
@@ -7,7 +17,7 @@ export type User = {
     isActive: boolean;
     is_superuser: boolean; 
     userprofile: {
-      role: string,
+      role: UserRole,
       organization: string
     }
   };

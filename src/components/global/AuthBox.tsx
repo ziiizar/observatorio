@@ -11,17 +11,20 @@ const AuthBox = ({ user }: {user : User}) => {
     <div className="flex place-content-end items-center mr-3">
       {user ? (
         <>
-          {user.is_superuser === true && (
-            <Button className="mr-2 w-[220px] bg-black text-white ">
+          {user.is_superuser === true ? (
+            <Button className="mr-2 w-[220px] bg-black text-white hover:shadow-shadowBlack transition-colors ease-out duration-300">
               <Link className="w-full" href={routes.admin}>Panel de Administracion</Link>
             </Button>
-          )}
+          ) : user.userprofile.role === 'observador' ? (<Button className="mr-2 w-[220px] bg-black text-white ">
+            {/* Cambiar la ruta por observador si lo hago separado  */}
+            <Link className="w-full" href={routes.admin}>Panel de Observador</Link>
+          </Button>): null}
           <Button className="w-32" onClick={logout}>
             Cerrar sesión
           </Button>
         </>
       ) : (
-        <Button className="w-28">
+        <Button className="w-36 bg-black text-white hover:shadow-shadowBlack">
           <Link className="w-full" href={routes.login}>Iniciar sesión</Link>
         </Button>
       )}

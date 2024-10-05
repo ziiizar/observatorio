@@ -67,8 +67,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      
+      scrollbar: {
+        hide: "scrollbar-width: none; scrollbar-color: transparent transparent;",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide"),],
 };
 export default config;

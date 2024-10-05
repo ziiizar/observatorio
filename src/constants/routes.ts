@@ -6,6 +6,7 @@ interface routes {
   services: string;
   aboutUs: string;
   patentes: string;
+  visualizacion: string
   registros: string;
   adminFuentes: string;
   crearFuente: string;
@@ -27,10 +28,11 @@ export const routes: routes = {
   login: "/login",
   admin: "/admin/principal",
   unauthorized: "/unauthorized",
-  services: "/services",
-  aboutUs: "/aboutUs",
-  patentes: "/patentes",
-  registros: "/registros",
+  services: "/servicios",
+  aboutUs: "/sobre-nosotros",
+  patentes: "/servicios/patentes",
+  visualizacion: '/servicios/visualizacion',
+  registros: "/servicios/registros",
   adminFuentes: "/admin/fuentes",
   crearFuente: "/admin/fuentes/crear",
   adminUsers: "/admin/usuarios",

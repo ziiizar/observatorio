@@ -16,7 +16,7 @@ const HeroRight = async () => {
   // const user = await getFakeAuth(FAKEUSERINDEX)
   const user = await getAuth()
   return (
-    <div className="rounded-lg bg-burgundy-950 w-[500px]  relative overflow-hidden">
+    <div className="rounded-lg bg-burgundy-950 w-[550px]  relative overflow-hidden">
 
       <div className="absolute -bottom-[30%]  w-full h-[300px]  elipse2"></div>
       <div className="absolute -top-[30%] -right-[40%]  w-full h-[300px]  elipse1"></div>
