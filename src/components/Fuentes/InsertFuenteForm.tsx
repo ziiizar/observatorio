@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
 
 const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
-
   const {
     register,
     handleSubmit,
@@ -22,7 +21,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
       frequency: 2,
       url: "",
       matter: "",
-      id_eje: 1,
+      id_eje: "", // Aquí lo dejamos vacío inicialmente
       is_monitoring: false,
     },
   });
@@ -32,11 +31,11 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
   };
 
   return (
-    <div className="flex flex-col gap-4 w-[500px] rounded-xl  shadow-shadowBlack p-6">
+    <div className="flex flex-col gap-4 w-[500px] rounded-xl shadow-shadowBlack p-6">
       <p className="text-4xl font-bold">Registra una fuente.</p>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label
-          className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2"
+          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="title"
         >
           <input
@@ -48,7 +47,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           />
         </label>
         <label
-          className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2"
+          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="url"
         >
           <input
@@ -60,7 +59,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           />
         </label>
         <label
-          className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2"
+          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="editors"
         >
           <input
@@ -72,7 +71,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           />
         </label>
         <label
-          className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2"
+          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="organization"
         >
           <input
@@ -86,7 +85,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
 
         <div className="flex gap-4">
           <label
-            className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2"
+            className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="frequency"
           >
             <input
@@ -98,7 +97,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
             />
           </label>
           <label
-            className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2"
+            className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="matter"
           >
             <input
@@ -111,21 +110,26 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           </label>
         </div>
 
-        {/*  */}
-
-        <select className="text-black" name="" id="">
-          {ejes.map((eje) => (
-            <option className="text-black" value={eje.id_eje} key={eje.id_eje}>
-              {eje.nombre_eje}
-            </option>
-          ))}
-        </select>
+        {/* Selector de ejes temáticos */}
+        <label
+          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
+          htmlFor="id_eje"
+        >
+          <select {...register("id_eje")} className="text-black">
+            <option value="">Seleccione un eje temático</option> {/* Opción por defecto */}
+            {ejes.map((eje) => (
+              <option className="text-black" value={eje.id_eje} key={eje.id_eje}>
+                {eje.nombre_eje}
+              </option>
+            ))}
+          </select>
+        </label>
 
         <Button
           className="bg-burgundy-900 text-white shadow-shadowRed"
           type="submit"
         >
-          Registrar Usuario
+          Registrar Fuente
         </Button>
       </form>
     </div>

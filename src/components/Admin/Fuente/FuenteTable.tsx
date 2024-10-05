@@ -13,7 +13,7 @@ const FuenteTable = async () => {
 
   return (
     <Table className="">
-      <TableHead className="bg-dusty-gray-300 scale-x-[100.25%]">
+      <TableHead className="">
         <TableRow>
           <TableHeadRow className="rounded-tl-xl ">Acciones</TableHeadRow>
           <TableHeadRow className="">Titulo</TableHeadRow>

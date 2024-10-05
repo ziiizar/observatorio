@@ -7,7 +7,7 @@ export interface TableCellProps extends React.TdHTMLAttributes<HTMLTableCellElem
 const TableCell: React.FC<TableCellProps> = ({ children, className, ...props }) => {
   return (
     <td
-      className={cn("p-2 align-middle [&:has([role=checkbox])]:pr-0 px-4 py-2", className)}
+      className={cn("p-2 align-middle [&:has([role=checkbox])]:pr-0 px-4 py-2 truncate max-w-60", className)}
       {...props}
     >
       {children}

@@ -6,7 +6,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
 
 const Table: React.FC<TableProps> = ({ children, className, ...props }) => {
   return (
-    <table className={cn("rounded-xl table-auto text-left  w-full overflow-auto", className)} {...props}>
+    <table className={cn("rounded-xl  text-left  w-full overflow-auto table-auto ", className)} {...props}>
       {children}
     </table>
   );

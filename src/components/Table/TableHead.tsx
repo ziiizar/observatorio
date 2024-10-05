@@ -6,7 +6,7 @@ export interface TableHeaderProps extends React.HTMLAttributes<HTMLTableSectionE
 
 const TableHead: React.FC<TableHeaderProps> = ({ children, className, ...props }) => {
   return (
-    <thead className={cn('',className)} {...props}>
+    <thead className={cn('bg-dusty-gray-300 scale-x-[100.25%]',className)} {...props}>
       {children}
     </thead>
   );

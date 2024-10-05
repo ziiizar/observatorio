@@ -6,7 +6,7 @@ export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionEle
 
 const TableBody: React.FC<TableBodyProps> = ({ children, className, ...props }) => {
   return (
-    <tbody className={cn(className)} {...props}>
+    <tbody className={cn('',className)} {...props}>
       {children}
     </tbody>
   );

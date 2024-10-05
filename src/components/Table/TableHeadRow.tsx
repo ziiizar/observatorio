@@ -7,7 +7,7 @@ export interface TableHeadProps extends React.ThHTMLAttributes<HTMLTableCellElem
 const TableHeadRow: React.FC<TableHeadProps> = ({ children, className, ...props }) => {
   return (
     <th
-      className={cn("font-medium text-muted-foreground  px-4 py-2", className)}
+      className={cn("font-medium  text-muted-foreground  px-4 py-2", className)}
       {...props}
     >
       {children}
