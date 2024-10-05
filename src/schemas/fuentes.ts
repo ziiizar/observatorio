@@ -8,7 +8,7 @@ export const InsertFuenteSchema = z.object({
   editors: z.string(),
   matter: z.string(),
   url: z.string(),
-  id_eje: z.number(),
+  id_eje: z.string(),
 });
 
 export type TSInsertFuenteSchema = z.infer<typeof InsertFuenteSchema>;

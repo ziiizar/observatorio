@@ -9,6 +9,7 @@ export const signup = async (data: TSSignUpSchema) => {
   const { password,email,first_name,last_name,organization,role, username } = data;
 
   console.log(data)
+  console.log("DATAAAAAAAAAAAAAAA")
   try {
     const response = await axiosInstance.post("signup", { password, email,first_name,last_name,organization,role, username });
 

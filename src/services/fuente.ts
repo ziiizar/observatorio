@@ -13,6 +13,8 @@ export const insertFuente = async (data: TSInsertFuenteSchema) => {
     url,
   } = data;
 
+  console.log(data)
+
   try {
     const resp = await axiosInstance.post("insert", {
       editors,
