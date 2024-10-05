@@ -5,8 +5,8 @@ export const InsertFuenteSchema = z.object({
   organization: z.string(),
   frequency: z.coerce.number(),
   is_monitoring: z.boolean(),
-  editors: z.string(),
-  matter: z.string(),
+  editores: z.string(),
+  materia: z.string(),
   url: z.string(),
   id_eje: z.string(),
 });

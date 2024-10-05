@@ -3,11 +3,11 @@ import { TSInsertFuenteSchema } from "@/schemas/fuentes";
 
 export const insertFuente = async (data: TSInsertFuenteSchema) => {
   const {
-    editors,
+    editores,
     frequency,
     id_eje,
     is_monitoring,
-    matter,
+    materia,
     organization,
     title,
     url,
@@ -16,12 +16,12 @@ export const insertFuente = async (data: TSInsertFuenteSchema) => {
   console.log(data)
 
   try {
-    const resp = await axiosInstance.post("insert", {
-      editors,
+    const resp = await axiosInstance.post("insert-fuente", {
+      editores,
       frequency,
       id_eje,
       is_monitoring,
-      matter,
+      materia,
       organization,
       title,
       url,

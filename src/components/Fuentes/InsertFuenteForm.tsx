@@ -17,10 +17,10 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
     defaultValues: {
       title: "",
       organization: "",
-      editors: "",
+      editores: "",
       frequency: 2,
       url: "",
-      matter: "",
+      materia: "",
       id_eje: "", // Aquí lo dejamos vacío inicialmente
       is_monitoring: false,
     },
@@ -65,7 +65,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           <input
             className="outline-none w-full"
             placeholder="Editor"
-            {...register("editors")}
+            {...register("editores")}
             type="text"
             name="editors"
           />
@@ -103,7 +103,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
             <input
               className="outline-none w-full"
               placeholder="Materia"
-              {...register("matter")}
+              {...register("materia")}
               type="text"
               name="matter"
             />

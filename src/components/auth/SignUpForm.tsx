@@ -123,7 +123,7 @@ const SignUpForm = () => {
           </select>
         </label>
 
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar Fuente</Button>
+        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
       </form>
     </div>
   );
