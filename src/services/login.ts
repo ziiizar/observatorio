@@ -2,7 +2,7 @@
 
 import { routes } from "@/constants/routes";
 import { axiosInstance } from "@/lib/utils";
-import { TSLoginSchema } from "@/schemas/auth";
+import { TSLoginSchema } from "@/schemas/user";
 // import { getSessionId } from "@/lib/getCookie";
 import Cookies from 'js-cookie'
 import { revalidatePath } from "next/cache";

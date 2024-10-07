@@ -1,36 +1,65 @@
 "use client";
 
-import { Key, UserIcon, Eye } from "@/Icons/Auth";
-import { SignUpSchema, TSSignUpSchema } from "@/schemas/user";
-import { signup } from "@/services/signUp";
+import {EditUserSchema,TSEditUserSchema  } from "@/schemas/user";
+import { updateUser } from "@/services/user"; // Asegúrate de tener este servicio para actualizar
+import { EjeTematico } from "@/types/ejeTEmatico";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
-import { routes } from "@/constants/routes";
+import { useEffect, useState } from "react";
+import { fetchEjesTematicos } from "@/data/ejesTematicos";
+import { User } from "@/types/user";
+import { Eye, Key, UserIcon } from "@/Icons/Auth";
 import { roles } from "@/constants/roles";
 
-const SignUpForm = () => {
 
-  const router = useRouter();
+const EditUserForm = ({
+ 
+  user,
+  onClose,
+}: {
+  
+  user: User;
+  onClose: () => void;
+}) => {
+
+    console.log(user)
+// const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
+
+//     useEffect(() => {
+//         const fetchEjes = async () => {
+//           const ejes = await fetchEjesTematicos();
+//           setEjes(ejes);
+//         };
+    
+//         fetchEjes();
+//       }, []);
 
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<TSSignUpSchema>({
-    resolver: zodResolver(SignUpSchema),
+  } = useForm<TSEditUserSchema>({
+    resolver: zodResolver(EditUserSchema),
     defaultValues: {
-      
-      password: "",
-      role: 'user'
+      id:user.id,
+      email: user.email || "",
+      organization: user.userprofile.organization || "",
+      first_name: user.first_name || "",
+      last_name: user.last_name || "",
+      role: user.userprofile.role || "",
+      username: user.username || "",
     },
   });
 
-  const onSubmit = async (data: TSSignUpSchema) => {
-    await signup(data).then((resp) => {console.log(resp)});
-    
+  const onSubmit = async (data: TSEditUserSchema) => {
+    await updateUser(data) // Actualiza la fuente usando su ID
+      .then((resp) => {
+        console.log(resp);
+        // onClose(); // Cierra el modal al completar la edición
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -87,16 +116,7 @@ const SignUpForm = () => {
             name="organization"
           />
         </label>
-        <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="password">
-          <Key></Key>
-          <input  className="outline-none w-full"
-            placeholder="Contraseña"
-            {...register("password")}
-            type="text"
-            name="password"
-          />
-          <Eye></Eye>
-        </label>
+        
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="repeatPassword">
           <Key></Key>
           <input  className="outline-none w-full"
@@ -125,8 +145,27 @@ const SignUpForm = () => {
 
         <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
       </form>
+      <div className="text-red-500">
+          {errors.email?.message
+            ? errors.email?.message
+            : errors.first_name?.message
+            ? errors.first_name?.message
+            : errors.id?.message
+            ? errors.id?.message
+            :errors.last_name?.message
+            ? errors.last_name?.message
+            :errors.role?.message
+            ? errors.role?.message
+            :errors.organization?.message
+            ? errors.organization?.message
+            :errors.username?.message
+            ? errors.username?.message
+            :null}
+        </div>
+        <Button onClick={onClose}>Cerrar</Button>
     </div>
+
   );
 };
 
-export default SignUpForm;
+export default EditUserForm;

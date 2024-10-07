@@ -12,3 +12,24 @@ export const InsertFuenteSchema = z.object({
 });
 
 export type TSInsertFuenteSchema = z.infer<typeof InsertFuenteSchema>;
+
+export const UpdateFuenteSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  organization: z.string(),
+  frequency: z.coerce.number(),
+  is_monitoring: z.boolean(),
+  editores: z.string(),
+  materia: z.string(),
+  url: z.string(),
+  id_eje: z.string(),
+});
+
+export type TSUpdateFuenteSchema = z.infer<typeof UpdateFuenteSchema>;
+
+
+export const DeleteFuenteSchema = z.object({
+  id: z.number(),
+});
+
+export type TSDeleteFuenteSchema = z.infer<typeof DeleteFuenteSchema>;

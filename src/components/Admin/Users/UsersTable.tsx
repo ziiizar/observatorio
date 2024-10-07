@@ -12,6 +12,10 @@ import Link from "next/link";
 import { routes } from "@/constants/routes";
 import ExportButton from "@/components/ExportButton";
 import jsPDF from "jspdf";
+import { useState } from "react";
+import Modal from "@/components/ui/Modal";
+import EditUserForm from "@/components/Fuentes/EditUserForm";
+import { deleteUser } from "@/services/user";
 
 const UsersTable = ({
   currentPage,
@@ -22,8 +26,43 @@ const UsersTable = ({
   limit: number;
   users: User[];
 }) => {
+
+
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+
+  const handleEditClick = (user: User) => {
+    setSelectedUser(user);
+    setIsEditModalOpen(true);
+  };
+
+  // Método para abrir el modal de confirmación de eliminación
+  const handleDeleteClick = (user: User) => {
+    setSelectedUser(user);
+    setIsDeleteModalOpen(true);
+  };
+
+  // Método para cerrar el modal
+  const closeModals = () => {
+    setIsEditModalOpen(false);
+    setIsDeleteModalOpen(false);
+    setSelectedUser(null);
+  };
+
+  // Método para eliminar la fuente
+  const handleDeleteUser = async () => {
+    if (selectedUser) {
+      console.log(selectedUser)
+      await deleteUser({id:selectedUser.id});
+      closeModals(); // Cierra el modal después de eliminar
+      // Aquí podrías agregar lógica adicional para actualizar la lista de fuentes si es necesario
+    }
+  };
+
   return (
-     
+    <>
         <Table className="">
           <TableHead className="">
             <TableRow>
@@ -32,7 +71,7 @@ const UsersTable = ({
               <TableHeadRow>Apellidos</TableHeadRow>
               <TableHeadRow>Correo</TableHeadRow>
               <TableHeadRow>Organismo</TableHeadRow>
-              <TableHeadRow className="rounded-tr-xl">Admin</TableHeadRow>
+              <TableHeadRow className="rounded-tr-xl">Rol</TableHeadRow>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,10 +83,10 @@ const UsersTable = ({
                 <TableCell className="border-l-2 border-dusty-gray-300">
                   {
                     <div className="flex gap-2">
-                      <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900">
+                      <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"  onClick={() => handleDeleteClick(user)}>
                         x
                       </Button>
-                      <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900">
+                      <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900" onClick={() => handleEditClick(user)}>
                         E
                       </Button>
                     </div>
@@ -73,6 +112,30 @@ const UsersTable = ({
           </TableBody>
         </Table>
      
+     {isEditModalOpen && selectedUser && (
+      <Modal onClose={closeModals}>
+        <EditUserForm onClose={closeModals} user={selectedUser} />
+      </Modal>
+    )}
+
+    {/* Modal para confirmar eliminación */}
+    {isDeleteModalOpen && selectedUser && (
+      <Modal onClose={closeModals}>
+        <div className="p-6">
+          <h2 className="text-2xl font-bold mb-4">Eliminar Fuente</h2>
+          <p>¿Desea eliminar al usuario "{selectedUser.username}"?</p>
+          <div className="flex justify-end gap-4 mt-6">
+            <Button className="bg-red-600 text-black" onClick={handleDeleteUser}>
+              Aceptar
+            </Button>
+            <Button className="bg-gray-300" onClick={closeModals}>
+              Cancelar
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    )}
+    </>
   );
 };
 

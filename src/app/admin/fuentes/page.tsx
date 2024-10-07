@@ -1,11 +1,14 @@
 import FuenteTable from "@/components/Admin/Fuente/FuenteTable";
 import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
+import { fetchFuentes } from "@/data/fuentes";
 import { exportTableToExcel } from "@/lib/exports";
 
 import Link from "next/link";
 
 const Page = async () => {
+
+  const fuentes = await fetchFuentes()
   return (
     <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 ps-4">
       <div className="flex gap-4">
@@ -20,7 +23,7 @@ const Page = async () => {
         </Button>
       </div>
       <div className="overflow-auto ">
-        <FuenteTable></FuenteTable>
+        <FuenteTable fuentes={fuentes}></FuenteTable>
       </div>
     </main>
   );

@@ -1,7 +1,7 @@
 "use client";
 
-import { Key, User, Eye } from "@/Icons/Auth";
-import { LoginSchema, TSLoginSchema } from "@/schemas/auth";
+import { Key, UserIcon, Eye } from "@/Icons/Auth";
+import { LoginSchema, TSLoginSchema } from "@/schemas/user";
 import { login } from "@/services/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect, useRouter } from "next/navigation";
@@ -42,7 +42,7 @@ const LoginForm = () => {
           className="flex gap-4 border-2 border-shark-950 rounded-lg \ items-center p-2"
           htmlFor="username"
         >
-          <User></User>
+          <UserIcon></UserIcon>
           <input
             className="outline-none w-full"
             placeholder="Nombre de usuario"

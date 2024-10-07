@@ -5,8 +5,8 @@ export type Fuente = {
     organization: string;
     frequency: number;
     is_monitoring: boolean;
-    editors: string;
-    matter: string;
+    editores: string;
+    materia: string;
     url: string;
     id_eje: number | null;
   }

@@ -1,5 +1,5 @@
 import PatentesTable from "@/components/Servicios/PatentesTable";
-import Pagination from "@/components/Table/pagination";
+import Pagination from "@/components/Table/Pagination";
 import { fetchPatentsTotalPages } from "@/data/patents";
 
 const Page = async ({
@@ -16,13 +16,13 @@ const Page = async ({
   const totalPages = await fetchPatentsTotalPages({ limit });
 
   return (
-    <main className="[grid-area:main] w-full h-full  flex  gap-4  overflow-hidden pt-4 ps-4">
+    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 ps-4">
       <div className="overflow-auto">
         <PatentesTable currentPage={currentPage} limit={5}></PatentesTable>
+      </div>
         <div className="mt-5 flex w-full justify-center">
           <Pagination totalPages={totalPages} />
         </div>
-      </div>
     </main>
   );
 };

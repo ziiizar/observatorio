@@ -1,25 +1,19 @@
 import Button from "@/components/ui/Button";
-import { Check, SearchBook } from "@/Icons/Landing";
+import {SearchBook } from "@/Icons/Landing";
 import AuthBox from "@/components/global/AuthBox";
 import PowerPointCard from "./PowerPointCard";
-import { getFakeAuth } from "@/services/getFakeAuth";
 import { getAuth } from "@/services/getAuth";
 import { Rectangulo } from "@/Icons/Rectangulo";
-import { FAKEUSERINDEX } from "@/constants/fakeUser";
 import WhiteCircle from "@/Icons/WhiteCircle";
-import  Cookies from 'js-cookie'
+import MovingElipses from "./MovingElipses";
 
 const HeroRight = async () => {
-  // const token = Cookies.get('access_token');
-  // console.log('token hero right')
-  // console.log(token)
-  // const user = await getFakeAuth(FAKEUSERINDEX)
+ 
   const user = await getAuth()
   return (
     <div className="rounded-lg bg-burgundy-950 w-[550px]  relative overflow-hidden">
 
-      <div className="absolute -bottom-[30%]  w-full h-[300px]  elipse2"></div>
-      <div className="absolute -top-[30%] -right-[40%]  w-full h-[300px]  elipse1"></div>
+      <MovingElipses></MovingElipses>
 
       <div className="flex flex-col gap-4 h-full w-full glass px-4 py-4 ">
         <div className="w-full self-end">

@@ -1,7 +1,7 @@
 
 import { routes } from "@/constants/routes";
 import { axiosInstance } from "@/lib/utils";
-import { TSSignUpSchema } from "@/schemas/auth";
+import { TSSignUpSchema } from "@/schemas/user";
 
 
 
