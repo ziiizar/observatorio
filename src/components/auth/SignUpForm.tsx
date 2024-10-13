@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import { routes } from "@/constants/routes";
 import { roles } from "@/constants/roles";
+import { toast } from "sonner";
 
 const SignUpForm = () => {
 
@@ -29,13 +30,36 @@ const SignUpForm = () => {
   });
 
   const onSubmit = async (data: TSSignUpSchema) => {
-    await signup(data).then((resp) => {console.log(resp)});
+    const resp = await signup(data)
+    if(resp.success){
+      
+      toast.success(resp.success)
+     }
+     if(resp.error){
+      toast.error(resp.error)
+     }
     
   };
 
+  const firstError = (() => {
+    const errorMessages = [
+      errors.email?.message,
+      errors.organization?.message,
+      errors.first_name?.message,
+      errors.last_name?.message,
+      errors.password?.message,
+      errors.role?.message,
+      errors.username?.message,
+      errors.confirmPassword?.message,
+    ];
+    return errorMessages.find(Boolean) || null;
+  })();
+
+  
+
   return (
     <div className="flex flex-col gap-4 w-[500px] rounded-xl  shadow-shadowBlack p-6">
-      <p className="text-4xl font-bold">
+      <p className="text-2xl font-bold">
       Registra un nuevo usuario.
       </p>
 
@@ -87,6 +111,7 @@ const SignUpForm = () => {
             name="organization"
           />
         </label>
+        <div className="flex gap-4">
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="password">
           <Key></Key>
           <input  className="outline-none w-full"
@@ -97,17 +122,17 @@ const SignUpForm = () => {
           />
           <Eye></Eye>
         </label>
-        <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="repeatPassword">
+        <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="confirmPassword">
           <Key></Key>
           <input  className="outline-none w-full"
             placeholder="Repetir Contraseña"
-            // {...register("password")}
+            {...register("confirmPassword")}
             type="text"
-            name="repeatPassword"
+            name="confirmPassword"
           />
           <Eye></Eye>
         </label>
-
+        </div>
 
         <label
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
@@ -122,6 +147,9 @@ const SignUpForm = () => {
             ))}
           </select>
         </label>
+
+        {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
+
 
         <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
       </form>

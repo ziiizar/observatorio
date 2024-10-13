@@ -8,10 +8,9 @@ import { Registros } from "@/types/registro";
 import TableCell from "@/components/Table/TableCell";
 import Button from "@/components/ui/Button";
 
-const RegistrosTable = async ({currentPage, limit}: {currentPage: number, limit:number}) => {
+const RegistrosTable = async ({registros}: {registros:Registros[]}) => {
 
 
-  const registros: Registros[] = await fetchRegistros({currentPage,limit});
 
   return (
     <Table className="">
@@ -38,8 +37,8 @@ const RegistrosTable = async ({currentPage, limit}: {currentPage: number, limit:
               : "Sin descripción disponible";
 
             return (
-              <TableRow className="border-b-2 border-dusty-gray-300" key={registro.id}>
-                <TableCell className="border-l-2 border-dusty-gray-300">
+              <TableRow className=" " key={registro.id}>
+                <TableCell className=" ">
                   <div className="flex gap-2">
                     <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900">
                       x
@@ -62,7 +61,7 @@ const RegistrosTable = async ({currentPage, limit}: {currentPage: number, limit:
                 <TableCell className="border-l-2 border-dusty-gray-300">
                   {metadataObject._map.subject ? metadataObject._map.subject.join(", ") : "Sin materia"}
                 </TableCell>
-                <TableCell className="border-x-2 border-dusty-gray-300">
+                <TableCell className="border-l-2 border-dusty-gray-300">
                   {description}
                 </TableCell>
               </TableRow>

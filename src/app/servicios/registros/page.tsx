@@ -1,26 +1,47 @@
 import RegistrosTable from "@/components/Servicios/RegistrosTable";
+import OrderBy from "@/components/Table/OrderBy";
 import Pagination from "@/components/Table/Pagination";
-import { fetchRegistrosTotalPages } from "@/data/registros";
+import Button from "@/components/ui/Button";
+import { fetchRegistros, fetchRegistrosTotalPages } from "@/data/registros";
+import { exportTableToExcel } from "@/lib/exports";
+import { orderOptions } from "@/types/orderOptions";
+import { Registros } from "@/types/registro";
 
-const Page = async ({searchParams}: {
+const Page = async ({
+  searchParams,
+}: {
   searchParams?: {
     query?: string;
     page?: string;
+    orderBy?: string;
   };
 }) => {
-
-  const limit = 6
+  const limit = 6;
 
   const currentPage = Number(searchParams?.page) || 1;
+  const currentOrder = searchParams?.orderBy || "title";
 
-  const totalPages = await fetchRegistrosTotalPages({limit});
+  const totalPages = await fetchRegistrosTotalPages({ limit });
+  const registros: Registros[] = await fetchRegistros({
+    currentPage,
+    limit,
+    orderBy: currentOrder,
+  });
 
   return (
-    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 ps-4 ">
-    <div className="overflow-auto">
-      <RegistrosTable currentPage={currentPage} limit={limit}></RegistrosTable>
-    </div>
-      <div className="mt-5 flex w-full justify-center ">
+    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 px-4 ">
+        <div className="flex justify-between">
+          <Button
+            className="w-36 border-burgundy-900 border-2 text-burgundy-900"
+            onClick={exportTableToExcel}
+          >
+            Exportar
+          </Button>
+          <OrderBy columns={orderOptions.REGISTROS}></OrderBy>
+        </div>
+<div>
+        <RegistrosTable registros={registros}></RegistrosTable>
+     
         <Pagination totalPages={totalPages} />
       </div>
     </main>

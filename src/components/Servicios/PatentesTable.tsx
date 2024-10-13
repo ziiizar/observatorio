@@ -8,10 +8,7 @@ import { Patente } from "@/types/patente";
 import TableCell from "@/components/Table/TableCell";
 import Button from "@/components/ui/Button";
 
-const PatentesTable = async ({currentPage, limit}: {currentPage: number, limit: number}) => {
-
-
-    const patentes:Patente[] = await fetchPatents({currentPage,limit})
+const PatentesTable = async ({patentes}: {patentes: Patente[]}) => {
 
 
   return (
@@ -29,8 +26,8 @@ const PatentesTable = async ({currentPage, limit}: {currentPage: number, limit: 
       </TableHead>
       <TableBody>
         {patentes.map((patente) => (
-          <TableRow className="border-b-2 border-dusty-gray-300" key={patente.id}>
-            <TableCell className="border-l-2 border-dusty-gray-300">
+          <TableRow className="" key={patente.id}>
+            <TableCell className="">
               {
                 <div className="flex gap-2">
                   <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900">x</Button>
@@ -38,12 +35,12 @@ const PatentesTable = async ({currentPage, limit}: {currentPage: number, limit: 
                 </div>
               }
             </TableCell>
-            <TableCell className="border-l-2 border-dusty-gray-300">{patente.source?.title}</TableCell>
+            <TableCell className="border-l-2 border-dusty-gray-300">{patente.sourceData?.organization}</TableCell>
             <TableCell className="border-l-2 border-dusty-gray-300">{patente.url}</TableCell>
             <TableCell className="border-l-2 border-dusty-gray-300">{patente.abstract}</TableCell>
             <TableCell className="border-l-2 border-dusty-gray-300">{patente.patent_office}</TableCell>
             <TableCell className="border-l-2 border-dusty-gray-300">{patente.claims}</TableCell>
-            <TableCell className="border-x-2 border-dusty-gray-300">{patente.description}</TableCell>
+            <TableCell className="border-l-2 border-dusty-gray-300">{patente.description}</TableCell>
             
             
             {/* <TableCell className="border-x-2 border-dusty-gray-300">{user.userprofile?.role}</TableCell> */}

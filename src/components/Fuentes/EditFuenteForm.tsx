@@ -9,6 +9,7 @@ import Button from "../ui/Button";
 import { Fuente } from "@/types/fuente";
 import { useEffect, useState } from "react";
 import { fetchEjesTematicos } from "@/data/ejesTematicos";
+import { toast } from "sonner";
 
 const EditFuenteForm = ({
  
@@ -20,7 +21,6 @@ const EditFuenteForm = ({
   onClose: () => void;
 }) => {
 
-    console.log(fuente)
 const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
 
     useEffect(() => {
@@ -53,16 +53,33 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
   });
 
   const onSubmit = async (data: TSUpdateFuenteSchema) => {
-    await updateFuente(data) // Actualiza la fuente usando su ID
-      .then((resp) => {
-        console.log(resp);
-        // onClose(); // Cierra el modal al completar la edición
-      })
-      .catch((error) => console.error(error));
+    const resp = await updateFuente(data) // Actualiza la fuente usando su ID
+    if(resp.success){
+      
+      toast.success(resp.success)
+     }
+     if(resp.error){
+      toast.error(resp.error)
+     }
+     onClose()
   };
 
+
+  const firstError = (() => {
+    const errorMessages = [
+      errors.title?.message,
+      errors.organization?.message,
+      errors.editores?.message,
+      errors.frequency?.message,
+      errors.url?.message,
+      errors.materia?.message,
+      errors.id_eje?.message,
+    ];
+    return errorMessages.find(Boolean) || null;
+  })();
+
   return (
-    <div className="flex flex-col gap-4 w-[500px] rounded-xl shadow-shadowBlack p-6">
+    <div className="flex flex-col gap-4 w-[500px] rounded-xl shadow-shadowBlack p-6 bg-white">
         
       <p className="text-4xl font-bold">Editar fuente</p>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
@@ -157,8 +174,11 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
           </select>
         </label>
 
+        {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
+
+
         <div className="flex justify-end gap-4">
-          <Button className="bg-gray-400 text-white" onClick={onClose}>
+          <Button onClick={onClose} className="bg-gray-400 text-white" >
             Cancelar
           </Button>
           <Button
@@ -171,7 +191,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
         </div>
       </form>
 
-      <div className="text-red-500">
+      {/* <div className="text-red-500">
           {errors.editores?.message
             ? errors.editores?.message
             : errors.frequency?.message
@@ -189,8 +209,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
             :errors.url?.message
             ? errors.url?.message
             :null}
-        </div>
-        <Button onClick={onClose}>Cerrar</Button>
+        </div> */}
     </div>
   );
 };

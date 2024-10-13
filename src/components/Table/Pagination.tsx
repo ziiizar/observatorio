@@ -26,7 +26,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   };
 
   return (
-    <>
+    <div className="py-2 flex w-full justify-center border-2  border-dusty-gray-300 rounded-b-xl">
       {/* NOTE: comment in this code when you get to this point in the course */}
 
       <div className="inline-flex">
@@ -36,7 +36,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           isDisabled={currentPage <= 1}
         />
 
-        <div className="flex -space-x-px">
+        <div className="flex">
           {allPages.map((page, index) => {
             let position: 'first' | 'last' | 'single' | 'middle' | undefined;
 
@@ -63,7 +63,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           isDisabled={currentPage >= totalPages}
         />
       </div>
-    </>
+    </div>
   );
 }
 
@@ -79,20 +79,20 @@ function PaginationNumber({
   isActive: boolean;
 }) {
   const className = clsx(
-    'flex h-10 w-10 items-center justify-center text-sm border',
+    'flex size-8 items-center justify-center text-xs border-2 transition-all duration-300 ease-in-out text-[clamp(0.75rem,2vw,1rem)] tabular-nums',
     {
       'rounded-l-md': position === 'first' || position === 'single',
       'rounded-r-md': position === 'last' || position === 'single',
-      'z-10 bg-blue-600 border-blue-600 text-white': isActive,
-      'hover:bg-gray-100': !isActive && position !== 'middle',
-      'text-gray-300': position === 'middle',
+      'z-10 bg-dusty-gray-500 border-dusty-gray-500  text-black': isActive,
+      'hover:bg-dusty-gray-100 border-dusty-gray-500 ': !isActive && position !== 'middle',
+      'text-black/70 border-dusty-gray-300': position === 'middle',
     },
   );
 
   return isActive || position === 'middle' ? (
-    <div className={className}>{page}</div>
+    <div  className={className}>{page}</div>
   ) : (
-    <Link href={href} className={className}>
+    <Link  href={href} className={className}>
       {page}
     </Link>
   );
@@ -108,10 +108,10 @@ function PaginationArrow({
   isDisabled?: boolean;
 }) {
   const className = clsx(
-    'flex h-10 w-10 items-center justify-center rounded-md border',
+    'flex size-8 items-center justify-center rounded-md border-2 border-dusty-gray-500 transition-all duration-300 ease-in-out hover:scale-105',
     {
-      'pointer-events-none text-gray-300': isDisabled,
-      'hover:bg-gray-100': !isDisabled,
+      'pointer-events-none text-dusty-gray-300': isDisabled,
+      'hover:bg-dusty-gray-100': !isDisabled,
       'mr-2 md:mr-4': direction === 'left',
       'ml-2 md:ml-4': direction === 'right',
     },

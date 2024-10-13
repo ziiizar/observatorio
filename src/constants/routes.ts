@@ -5,14 +5,18 @@ interface routes {
   unauthorized: string;
   services: string;
   aboutUs: string;
+  boletines: string;
+  geoportal: string;
   patentes: string;
-  visualizacion: string
+  visualizacion: string;
   registros: string;
+  observadorFuentes: string
   adminFuentes: string;
   crearFuente: string;
   adminUsers: string;
-  crearUser: string
+  crearUser: string;
   adminEstadisticas: string;
+  crearEje: string
   adminBoletines: string;
 
   // confirmEmail:string
@@ -28,16 +32,20 @@ export const routes: routes = {
   login: "/login",
   admin: "/admin/principal",
   unauthorized: "/unauthorized",
-  services: "/servicios",
+  services: "/servicios/registros",
   aboutUs: "/sobre-nosotros",
+  boletines: "/boletines",
+  geoportal: "/geoportal",
   patentes: "/servicios/patentes",
-  visualizacion: '/servicios/visualizacion',
+  visualizacion: "/servicios/visualizacion",
   registros: "/servicios/registros",
+  observadorFuentes: "/servicios/fuentes",
   adminFuentes: "/admin/fuentes",
   crearFuente: "/admin/fuentes/crear",
   adminUsers: "/admin/usuarios",
   crearUser: "/admin/usuarios/crear",
   adminEstadisticas: "/admin/estadisticas",
+  crearEje: "/admin/estadisticas/crear-eje",
   adminBoletines: "/admin/boletines",
 
   // register: "/Register",

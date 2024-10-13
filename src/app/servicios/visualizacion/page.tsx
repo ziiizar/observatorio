@@ -56,7 +56,7 @@ const page = () => {
   ];
 
   return (
-    <main className="[grid-area:main] w-full h-full  flex flex-col  gap-4  overflow-hidden pt-4 ps-4 ">
+    <main className="[grid-area:main] w-full h-full  flex flex-col  gap-4  overflow-hidden pt-4 px-4 ">
       <div className=" w-full  h-full rounded-xl  flex flex-col gap-4 p-4">
         <div className="flex flex-col">
           <h4>Patentes por paises</h4>

@@ -1,6 +1,12 @@
+import ExportButton from "@/components/ExportButton";
 import PatentesTable from "@/components/Servicios/PatentesTable";
+import OrderBy from "@/components/Table/OrderBy";
 import Pagination from "@/components/Table/Pagination";
-import { fetchPatentsTotalPages } from "@/data/patents";
+import Button from "@/components/ui/Button";
+import { fetchPatents, fetchPatentsTotalPages } from "@/data/patents";
+import { exportTableToExcel } from "@/lib/exports";
+import { orderOptions } from "@/types/orderOptions";
+import { Patente } from "@/types/patente";
 
 const Page = async ({
   searchParams,
@@ -8,21 +14,37 @@ const Page = async ({
   searchParams?: {
     query?: string;
     page?: string;
+    orderBy?: string;
   };
 }) => {
   const limit = 5;
   const currentPage = Number(searchParams?.page) || 1;
+  const currentOrder = searchParams?.orderBy || "fuente_id";
 
   const totalPages = await fetchPatentsTotalPages({ limit });
+  const patentes: Patente[] = await fetchPatents({
+    currentPage,
+    limit,
+    orderBy: currentOrder,
+  });
 
   return (
-    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 ps-4">
-      <div className="overflow-auto">
-        <PatentesTable currentPage={currentPage} limit={5}></PatentesTable>
+    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 px-4">
+      <div className="flex justify-between">
+        <Button
+          className="w-36 border-burgundy-900 border-2 text-burgundy-900"
+          onClick={exportTableToExcel}
+        >
+          Exportar
+        </Button>
+        <OrderBy columns={orderOptions.PATENTES}></OrderBy>
       </div>
-        <div className="mt-5 flex w-full justify-center">
-          <Pagination totalPages={totalPages} />
-        </div>
+
+      <div>
+        <PatentesTable patentes={patentes}></PatentesTable>
+
+        <Pagination totalPages={totalPages} />
+      </div>
     </main>
   );
 };

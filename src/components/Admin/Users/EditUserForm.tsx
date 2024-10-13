@@ -1,16 +1,14 @@
 "use client";
 
 import {EditUserSchema,TSEditUserSchema  } from "@/schemas/user";
-import { updateUser } from "@/services/user"; // Asegúrate de tener este servicio para actualizar
-import { EjeTematico } from "@/types/ejeTEmatico";
+import { updateUser } from "@/services/user"; 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import Button from "../ui/Button";
-import { useEffect, useState } from "react";
-import { fetchEjesTematicos } from "@/data/ejesTematicos";
+import Button from "../../ui/Button";
 import { User } from "@/types/user";
 import { Eye, Key, UserIcon } from "@/Icons/Auth";
 import { roles } from "@/constants/roles";
+import { toast } from "sonner";
 
 
 const EditUserForm = ({
@@ -23,7 +21,6 @@ const EditUserForm = ({
   onClose: () => void;
 }) => {
 
-    console.log(user)
 // const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
 
 //     useEffect(() => {
@@ -54,16 +51,32 @@ const EditUserForm = ({
   });
 
   const onSubmit = async (data: TSEditUserSchema) => {
-    await updateUser(data) // Actualiza la fuente usando su ID
-      .then((resp) => {
-        console.log(resp);
-        // onClose(); // Cierra el modal al completar la edición
-      })
-      .catch((error) => console.error(error));
+    const resp = await updateUser(data) 
+    if(resp.success){
+      toast.success(resp.success)
+     }
+     if(resp.error){
+      toast.error(resp.error)
+     }
+     onClose()
   };
 
+
+  const firstError = (() => {
+    const errorMessages = [
+      errors.email?.message,
+      errors.organization?.message,
+      errors.first_name?.message,
+      errors.last_name?.message,
+      errors.password?.message,
+      errors.role?.message,
+      errors.username?.message,
+    ];
+    return errorMessages.find(Boolean) || null;
+  })();
+
   return (
-    <div className="flex flex-col gap-4 w-[500px] rounded-xl  shadow-shadowBlack p-6">
+    <div className="flex flex-col gap-4 w-[500px] rounded-xl  shadow-shadowBlack p-6 bg-white">
       <p className="text-4xl font-bold">
       Registra un nuevo usuario.
       </p>
@@ -143,25 +156,12 @@ const EditUserForm = ({
           </select>
         </label>
 
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
+        {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
+
+
+        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Aceptar</Button>
       </form>
-      <div className="text-red-500">
-          {errors.email?.message
-            ? errors.email?.message
-            : errors.first_name?.message
-            ? errors.first_name?.message
-            : errors.id?.message
-            ? errors.id?.message
-            :errors.last_name?.message
-            ? errors.last_name?.message
-            :errors.role?.message
-            ? errors.role?.message
-            :errors.organization?.message
-            ? errors.organization?.message
-            :errors.username?.message
-            ? errors.username?.message
-            :null}
-        </div>
+     
         <Button onClick={onClose}>Cerrar</Button>
     </div>
 

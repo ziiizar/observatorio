@@ -1,7 +1,8 @@
-
+'use server'
 import { routes } from "@/constants/routes";
 import { axiosInstance } from "@/lib/utils";
 import { TSSignUpSchema } from "@/schemas/user";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -15,7 +16,7 @@ export const signup = async (data: TSSignUpSchema) => {
 
     if (!response) throw new Error("Error during signup");
 
-    
+    revalidatePath(routes.adminUsers)
     return { success: "Cuenta creada con exito" };
     // redirect("/");
   } catch (error) {

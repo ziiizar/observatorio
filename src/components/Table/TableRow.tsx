@@ -36,7 +36,7 @@ export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement>
 
 const TableRow: React.FC<TableRowProps> = ({ children, className, isHeader = false, ...props }) => {
   return (
-    <tr className={cn("truncate max-w-20 text-sm", className)} {...props}>
+    <tr className={cn("truncate max-w-20 text-sm border-b-2  border-dusty-gray-300", className)} {...props}>
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { columnIndex: index }); // Pasamos el índice de la columna

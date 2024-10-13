@@ -1,6 +1,9 @@
+'use server'
 
+import { routes } from "@/constants/routes";
 import { axiosInstance } from "@/lib/utils";
 import { TSDeleteUserSchema, TSEditUserSchema } from "@/schemas/user";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -14,7 +17,7 @@ export const updateUser = async (data: TSEditUserSchema) => {
 
     if (!response) throw new Error("Error during update");
 
-    
+    // revalidatePath(routes.adminUsers)
     return { success: "Usuario editado con exito" };
     // redirect("/");
   } catch (error) {
@@ -34,6 +37,7 @@ export const deleteUser = async (data: TSDeleteUserSchema) => {
         
       );
   
+      revalidatePath(routes.adminUsers)
       return { success: "Usuario Eliminado" };
     } catch (error) {
       return { error: "Error" };

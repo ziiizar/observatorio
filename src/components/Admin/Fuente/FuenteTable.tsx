@@ -11,9 +11,11 @@ import Button from "@/components/ui/Button";
 import { Fuente } from "@/types/fuente";
 import Modal from "@/components/ui/Modal"; // Asegúrate de tener un componente Modal implementado
 import EditFuenteForm from "@/components/Fuentes/EditFuenteForm";
-import { deleteFuente } from "@/services/fuente"; // Importa la función para eliminar la fuente
+import { deleteFuente, startMonitoring } from "@/services/fuente"; // Importa la función para eliminar la fuente
+import { AuthUser } from "@/types/user";
+import { toast } from "sonner";
 
-const FuenteTable = ({ fuentes }: { fuentes: Fuente[] }) => {
+const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) => {
   const [selectedFuente, setSelectedFuente] = useState<Fuente | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -40,9 +42,14 @@ const FuenteTable = ({ fuentes }: { fuentes: Fuente[] }) => {
   // Método para eliminar la fuente
   const handleDeleteFuente = async () => {
     if (selectedFuente) {
-      console.log("selectedFuente")
-      console.log(selectedFuente)
-      await deleteFuente({id:selectedFuente.id});
+      const resp = await deleteFuente({id:selectedFuente.id})
+      if(resp.success){
+      
+        toast.success(resp.success)
+       }
+       if(resp.error){
+        toast.error(resp.error)
+       };
       closeModals(); // Cierra el modal después de eliminar
       // Aquí podrías agregar lógica adicional para actualizar la lista de fuentes si es necesario
     }
@@ -66,9 +73,14 @@ const FuenteTable = ({ fuentes }: { fuentes: Fuente[] }) => {
         </TableHead>
         <TableBody>
           {fuentes.map((fuente) => (
-            <TableRow className="border-b-2 border-dusty-gray-300" key={fuente.id}>
-              <TableCell className="border-l-2 border-dusty-gray-300">
-                <div className="flex gap-2">
+            <TableRow className="" key={fuente.id}>
+              <TableCell className="">
+                {user.role === 'observador' ? (<Button
+                    className=" w-16 h-8 rounded-full bg-burgundy-900 text-white"
+                    onClick={() => startMonitoring(fuente.id)} // Abrir el modal de edición con la fuente seleccionada
+                  >
+                    Iniciar
+                  </Button>):(<div className="flex gap-2">
                   <Button
                     className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"
                     onClick={() => handleDeleteClick(fuente)}
@@ -81,7 +93,7 @@ const FuenteTable = ({ fuentes }: { fuentes: Fuente[] }) => {
                   >
                     E
                   </Button>
-                </div>
+                </div>)}
               </TableCell>
               <TableCell className="border-l-2 border-dusty-gray-300">{fuente.title}</TableCell>
               <TableCell className="border-l-2 border-dusty-gray-300">{fuente.url}</TableCell>
@@ -92,7 +104,7 @@ const FuenteTable = ({ fuentes }: { fuentes: Fuente[] }) => {
               </TableCell>
               <TableCell className="border-l-2 border-dusty-gray-300">{fuente.editores}</TableCell>
               <TableCell className="border-l-2 border-dusty-gray-300">{fuente.materia}</TableCell>
-              <TableCell className="border-x-2 border-dusty-gray-300">{fuente.id_eje}</TableCell>
+              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.id_eje}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -108,7 +120,7 @@ const FuenteTable = ({ fuentes }: { fuentes: Fuente[] }) => {
       {/* Modal para confirmar eliminación */}
       {isDeleteModalOpen && selectedFuente && (
         <Modal onClose={closeModals}>
-          <div className="p-6">
+          <div className="p-6 bg-white rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Eliminar Fuente</h2>
             <p>¿Desea eliminar la fuente "{selectedFuente.title}"?</p>
             <div className="flex justify-end gap-4 mt-6">

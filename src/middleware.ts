@@ -1,19 +1,11 @@
-import { getFakeAuth } from "@/services/getFakeAuth";
 import { getAuth } from "@/services/getAuth";
 import { AUTH_ROUTES, PUBLIC_ROUTES, routes, ADMIN_ROUTES } from "./constants/routes";
-import { FAKEUSERINDEX } from "./constants/fakeUser";
+import { AuthUser } from "./types/user";
 
 export default async function auth(req) {
   const { nextUrl } = req;
-  // const token = req.cookies.get('access_token');
   
-  // console.log('token middleware')
-  // console.log(token)
-  
-  const simulatedUserPosition = FAKEUSERINDEX; 
-
-  // const user = await getFakeAuth(FAKEUSERINDEX);
-  const user = await getAuth();
+  const user:AuthUser = await getAuth();
 
   const isLoggedIn = !!user; // Comprueba si existe un usuario
   const isAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname);
@@ -31,7 +23,7 @@ export default async function auth(req) {
     return Response.redirect(new URL(routes.login, nextUrl)); // Redirige a login si no está autenticado
   }
 
-  if(isAdminRoute && !user.is_superuser){
+  if(isAdminRoute && !(user.role === 'admin')){
     return Response.redirect(new URL(routes.home, nextUrl));
   }
 

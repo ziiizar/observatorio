@@ -14,8 +14,9 @@ import ExportButton from "@/components/ExportButton";
 import jsPDF from "jspdf";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
-import EditUserForm from "@/components/Fuentes/EditUserForm";
+import EditUserForm from "@/components/Admin/Users/EditUserForm";
 import { deleteUser } from "@/services/user";
+import { toast } from "sonner";
 
 const UsersTable = ({
   currentPage,
@@ -54,8 +55,14 @@ const UsersTable = ({
   // Método para eliminar la fuente
   const handleDeleteUser = async () => {
     if (selectedUser) {
-      console.log(selectedUser)
-      await deleteUser({id:selectedUser.id});
+     const resp = await deleteUser({id:selectedUser.id});
+     if(resp.success){
+      
+      toast.success(resp.success)
+     }
+     if(resp.error){
+      toast.error(resp.error)
+     }
       closeModals(); // Cierra el modal después de eliminar
       // Aquí podrías agregar lógica adicional para actualizar la lista de fuentes si es necesario
     }
@@ -77,10 +84,10 @@ const UsersTable = ({
           <TableBody>
             {users.map((user) => (
               <TableRow
-                className="border-b-2 border-dusty-gray-300"
+                className=""
                 key={user.id}
               >
-                <TableCell className="border-l-2 border-dusty-gray-300">
+                <TableCell className="">
                   {
                     <div className="flex gap-2">
                       <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"  onClick={() => handleDeleteClick(user)}>
@@ -104,7 +111,7 @@ const UsersTable = ({
                 <TableCell className="border-l-2 border-dusty-gray-300">
                   {user.userprofile?.organization}
                 </TableCell>
-                <TableCell className="border-x-2 border-dusty-gray-300">
+                <TableCell className="border-l-2 border-dusty-gray-300">
                   {user.userprofile?.role}
                 </TableCell>
               </TableRow>
@@ -121,8 +128,8 @@ const UsersTable = ({
     {/* Modal para confirmar eliminación */}
     {isDeleteModalOpen && selectedUser && (
       <Modal onClose={closeModals}>
-        <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4">Eliminar Fuente</h2>
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-4">Eliminar Usuario</h2>
           <p>¿Desea eliminar al usuario "{selectedUser.username}"?</p>
           <div className="flex justify-end gap-4 mt-6">
             <Button className="bg-red-600 text-black" onClick={handleDeleteUser}>

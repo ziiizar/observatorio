@@ -25,6 +25,7 @@
 
 import { cn } from "@/lib/utils";
 import { useTableContext } from "./Table";
+import { outfit } from "@/styles/fonts";
 
 export interface TableHeadRowProps extends React.ThHTMLAttributes<HTMLTableCellElement> {
   children: React.ReactNode;
@@ -43,15 +44,15 @@ const TableHeadRow: React.FC<TableHeadRowProps> = ({ children, className, column
 
   return (
     <th
-      className={cn("font-medium text-muted-foreground px-4 py-2 cursor-pointer", className)}
-      onClick={handleHeaderClick} // Añadimos el evento de clic
+      className={cn("font-medium text-muted-foreground px-4 py-2 cursor-pointer", outfit.className, className)}
+      onDoubleClick={handleHeaderClick} // Añadimos el evento de clic
       {...props}
     >
       {children}
       {/* Mostrar un indicador visual si está expandido o no */}
-      <span className="ml-2 text-blue-600">
+      {/* <span className="ml-2 text-blue-600">
         {isExpanded ? "Ver menos" : "Ver mas"}
-      </span>
+      </span> */}
     </th>
   );
 };

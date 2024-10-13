@@ -51,6 +51,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useTableContext } from "./Table";
+import { zodiak } from "@/styles/fonts";
 
 export interface TableCellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
   children: React.ReactNode;
@@ -75,7 +76,7 @@ const TableCell: React.FC<TableCellProps> = ({ children, className, truncationLi
   };
 
   return (
-    <td className={cn("p-2 align-middle px-4 py-2", className)} {...props}>
+    <td className={cn("p-2 align-middle px-4 py-2", zodiak.className, className)} {...props}>
       {renderContent()}
     </td>
   );

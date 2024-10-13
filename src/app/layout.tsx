@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { outfit } from "@/styles/fonts";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={cn( 'antialiased bg-white text-black min-h-screen w-full', outfit.className)}
       >
         {children}
+        <Toaster></Toaster>
       </body>
     </html>
   );

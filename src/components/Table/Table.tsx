@@ -1,6 +1,5 @@
 "use client";
 
-
 import { cn } from "@/lib/utils";
 import React, { createContext, useState, useContext } from "react";
 
@@ -32,9 +31,19 @@ const Table: React.FC<TableProps> = ({ children, className, ...props }) => {
 
   return (
     <TableContext.Provider value={{ expandedColumns, toggleColumnExpansion }}>
-      <table className={cn("rounded-xl text-left w-full overflow-auto table-auto", className)} {...props}>
-        {children}
-      </table>
+      <div className="w-full overflow-x-auto rounded-t-2xl  scrollbar-hide border-t-2 border-x-2 border-dusty-gray-300 h-full">
+        <table 
+          className={cn(
+            "w-full table-auto text-left",
+            "text-[clamp(0.75rem,2vw,1rem)]",
+            "p-2 md:p-4",
+            className
+          )} 
+          {...props}
+        >
+          {children}
+        </table>
+      </div>
     </TableContext.Provider>
   );
 };

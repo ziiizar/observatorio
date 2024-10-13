@@ -1,9 +1,10 @@
 'use client'
 
 import useAuth from "@/hooks/useAuth";
+import { AuthUser } from "@/types/user";
 // import { getAuth } from "@/services/getAuth";
 // import  Cookies from 'js-cookie'
-const Test = ({user}) => {
+const Test = ({user}: {user:AuthUser}) => {
 
   // const token = Cookies.get('access_token');
   // console.log('token')
@@ -20,7 +21,7 @@ const Test = ({user}) => {
           <p>Email: {user.email}</p>
           <p>First Name: {user.first_name}</p>
           <p>Last Name: {user.last_name}</p>
-          <p>Superuser: {user.is_superuser ? 'Yes' : 'No'}</p>
+          <p>Role: {user.role}</p>
         </div>
       ) : (
         <p>No user data found</p>

@@ -7,6 +7,7 @@ import { fetchAllUsers, fetchUsersTotalPages } from "@/data/users";
 import { User } from "@/types/user";
 import Link from "next/link";
 import { exportTableToPDF, exportTableToExcel } from "@/lib/exports";
+import TableSkeleton from "@/components/ui/Skeletons/TableSkeleton";
 
 const page = async ({
   searchParams,
@@ -19,13 +20,16 @@ const page = async ({
   const limit = 6;
 
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchUsersTotalPages({ limit });
 
+  // !Considerar convertir estas dos funciones en una sola que rertorne los dos valores
+  const totalPages = await fetchUsersTotalPages({ limit });
   const users: User[] = await fetchAllUsers({ currentPage, limit });
-  console.log(users);
+
+
+
 
   return (
-    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 ps-4">
+    <main className="[grid-area:main] w-full h-full  flex flex-col gap-4  overflow-hidden pt-4 px-4">
       <div className="flex gap-4">
         <Button className="bg-burgundy-900 text-white w-64 shadow-shadowRed">
           <Link href={routes.crearUser}>+ Registrar Usuario</Link>
@@ -36,18 +40,19 @@ const page = async ({
         >
           Exportar
         </Button>
+        
       </div>
-
-      <div className="overflow-auto ">
-        <UsersTable
+<div>
+  <UsersTable
           users={users}
           currentPage={currentPage}
           limit={limit}
         ></UsersTable>
-      </div>
-        <div className="mt-5 flex w-full justify-center">
+        {totalPages >1 && 
           <Pagination totalPages={totalPages} />
-        </div>
+        }
+</div>
+        
     </main>
   );
 };

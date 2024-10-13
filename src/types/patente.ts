@@ -9,7 +9,7 @@ import { Fuente } from "./fuente";
     claims: string;
     patent_office: string;
     url: string;
-    source?: Fuente | null;
+    sourceData?: Fuente | null;
   }
   
 

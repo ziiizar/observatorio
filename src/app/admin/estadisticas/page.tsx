@@ -1,45 +1,59 @@
 import EjeTematicoTable from "@/components/Admin/Estadisticas/EjeTematicoTable";
+import OrderBy from "@/components/Table/OrderBy";
+import Pagination from "@/components/Table/Pagination";
 import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
+import { fetchEjesTematicos } from "@/data/ejesTematicos";
 import { exportTableToExcel } from "@/lib/exports";
 import Link from "next/link";
+import { orderOptions } from "../../../types/orderOptions";
+import EjesPieChart from "@/components/Admin/Estadisticas/EjesPieChart";
 
-const page = () => {
+const page = async ({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+    orderBy?: string;
+  };
+}) => {
+  const limit = 5;
+
+  const currentPage = Number(searchParams?.page) || 1;
+  const currentOrder = searchParams?.orderBy || "nombre_eje";
+
+  const { ejes, total_pages: totalPages } = await fetchEjesTematicos({
+    limit,
+    currentPage,
+    orderBy: currentOrder,
+  });
+
   return (
-    <main className="[grid-area:main] w-full h-full  flex  gap-4  overflow-hidden pt-4 ps-4">
+    <main className="[grid-area:main] w-full h-full  flex  gap-4  overflow-hidden pt-4 px-4">
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
           <Button className="bg-burgundy-900 text-white w-64 shadow-shadowRed">
-            <Link href={routes.crearFuente}>+ Registrar Eje Tematico</Link>
+            <Link href={routes.crearEje}>+ Registrar Eje Tematico</Link>
           </Button>
           <Button
-          className="w-36 border-burgundy-900 border-2 text-burgundy-900"
-          onClick={exportTableToExcel}
-        >
-          Exportar
-        </Button>
+            className="w-36 border-burgundy-900 border-2 text-burgundy-900"
+            onClick={exportTableToExcel}
+          >
+            Exportar
+          </Button>
+          <OrderBy columns={orderOptions.EJES}></OrderBy>
         </div>
-        <div className="overflow-auto scrollbar-hide">
-          <EjeTematicoTable></EjeTematicoTable>
-        </div>
-      </div>
-      <div className="flex flex-col gap-4">
-      <div className="flex gap-4">
-        <Button className="bg-burgundy-900 text-white w-64 shadow-shadowRed">
-          <Link href={routes.crearFuente}>+ Registrar Eje Tematico</Link>
-        </Button>
-        <Button className="w-36 border-burgundy-900 border-2 text-burgundy-900">
-          Exportar
-        </Button>
-        </div>
-        <div className="overflow-auto scrollbar-hide">
-          <EjeTematicoTable></EjeTematicoTable>
+        <div>
+          <EjeTematicoTable ejes={ejes}></EjeTematicoTable>
+          {/* <EjesPieChart></EjesPieChart> */}
+          
+            <Pagination totalPages={totalPages} />
+          
         </div>
       </div>
-      <div className="flex gap-8  overflow-auto scrollbar-hide">
-        
-        
-      </div>
+
+      <div className="flex gap-8  overflow-auto scrollbar-hide"></div>
     </main>
   );
 };
