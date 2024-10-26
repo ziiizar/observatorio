@@ -18,13 +18,8 @@ interface routes {
   adminEstadisticas: string;
   crearEje: string
   adminBoletines: string;
-
-  // confirmEmail:string
-  // profile: string;
-  // verifyEmail:string
-  // register: string;
-  // reset: string
-  // newPassword: string
+  dspace: string
+  vivo: string
 }
 
 export const routes: routes = {
@@ -47,6 +42,8 @@ export const routes: routes = {
   adminEstadisticas: "/admin/estadisticas",
   crearEje: "/admin/estadisticas/crear-eje",
   adminBoletines: "/admin/boletines",
+  dspace: 'https://dspace.uclv.edu.cu/',
+  vivo: 'http://vivo.uclv.edu.cu/',
 
   // register: "/Register",
   // confirmEmail: '/confirm-email',

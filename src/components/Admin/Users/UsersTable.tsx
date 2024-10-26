@@ -17,6 +17,7 @@ import Modal from "@/components/ui/Modal";
 import EditUserForm from "@/components/Admin/Users/EditUserForm";
 import { deleteUser } from "@/services/user";
 import { toast } from "sonner";
+import { DeleteIcon, EditIcon } from "@/Icons/Table";
 
 const UsersTable = ({
   currentPage,
@@ -91,10 +92,10 @@ const UsersTable = ({
                   {
                     <div className="flex gap-2">
                       <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"  onClick={() => handleDeleteClick(user)}>
-                        x
+                        <DeleteIcon className={'group-hover:fill-white fill-burgundy-900'}></DeleteIcon>
                       </Button>
                       <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900" onClick={() => handleEditClick(user)}>
-                        E
+                        <EditIcon></EditIcon>
                       </Button>
                     </div>
                   }

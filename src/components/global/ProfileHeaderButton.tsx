@@ -29,7 +29,7 @@ export default function ProfileHeaderButton({ user }: { user: AuthUser }) {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="size-8 sm:size-9 bg-gray-400 rounded-full flex items-center justify-center text-white border-2 border-black">
-          <h4 className='text-[clamp(0.75rem,2vw,0.875rem)]'>{user.role.at(0)?.toUpperCase()}</h4>
+          <h4 className='text-[clamp(0.75rem,2vw,0.875rem)]'>{user?.role.at(0)?.toUpperCase()}</h4>
         </div>
         <svg
           className={`h-3 w-3 sm:h-4 sm:w-4 text-gray-700 transition-transform duration-200 ${

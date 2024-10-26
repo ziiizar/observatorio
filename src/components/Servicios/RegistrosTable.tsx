@@ -7,6 +7,7 @@ import { fetchRegistros } from "@/data/registros";
 import { Registros } from "@/types/registro";
 import TableCell from "@/components/Table/TableCell";
 import Button from "@/components/ui/Button";
+import { DeleteIcon } from "@/Icons/Table";
 
 const RegistrosTable = async ({registros}: {registros:Registros[]}) => {
 
@@ -41,7 +42,7 @@ const RegistrosTable = async ({registros}: {registros:Registros[]}) => {
                 <TableCell className=" ">
                   <div className="flex gap-2">
                     <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900">
-                      x
+                      <DeleteIcon className={'group-hover:fill-white fill-burgundy-900'}></DeleteIcon>
                     </Button>
                   </div>
                 </TableCell>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Hombre from "@/public/Hombre.png";
+import Hombre from "@/public/Hombre.webp";
 import { Eficiencia, Renovable, Sostenible } from "@/Icons/Landing";
 import { cn } from "@/lib/utils";
 import { zodiak } from "@/styles/fonts";

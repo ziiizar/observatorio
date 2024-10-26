@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import { toast } from "sonner";
 import { updateEje } from "@/services/eje";
+import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+import { routes } from "@/constants/routes";
 
 
 const EditEjeForm = ({
@@ -19,8 +22,7 @@ const EditEjeForm = ({
   onClose: () => void;
 }) => {
 
-console.log("eje")
-console.log(eje)
+  const router = useRouter()  
   const {
     register,
     handleSubmit,
@@ -39,6 +41,8 @@ console.log(eje)
     const resp = await updateEje(data) 
     if(resp.success){
       toast.success(resp.success)
+      router.push(routes.adminEstadisticas)
+      
      }
      if(resp.error){
       toast.error(resp.error)
@@ -63,7 +67,7 @@ console.log(eje)
 
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="nombre_eje">
-          <input className="outline-none w-full"
+          <Input 
             placeholder="Nombre"
             {...register("nombre_eje")}
             type="text"

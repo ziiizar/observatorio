@@ -8,6 +8,7 @@ import { User } from "@/types/user";
 import Link from "next/link";
 import { exportTableToPDF, exportTableToExcel } from "@/lib/exports";
 import TableSkeleton from "@/components/ui/Skeletons/TableSkeleton";
+import { ExportIcon } from "@/Icons/Table";
 
 const page = async ({
   searchParams,
@@ -17,7 +18,7 @@ const page = async ({
     page?: string;
   };
 }) => {
-  const limit = 6;
+  const limit = 5;
 
   const currentPage = Number(searchParams?.page) || 1;
 
@@ -35,9 +36,9 @@ const page = async ({
           <Link href={routes.crearUser}>+ Registrar Usuario</Link>
         </Button>
         <Button
-          className="w-36 border-burgundy-900 border-2 text-burgundy-900"
+          className="w-36 border-burgundy-900 border-2 text-burgundy-900 flex gap-2"
           onClick={exportTableToExcel}
-        >
+        > <ExportIcon className={'group-hover:fill-white fill-burgundy-900'}></ExportIcon>
           Exportar
         </Button>
         

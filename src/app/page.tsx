@@ -22,7 +22,6 @@ const user = await getAuth()
         <Section3></Section3>
       </main>
 
-      <Test user={user}></Test>
       <Footer></Footer>
     </>
   );

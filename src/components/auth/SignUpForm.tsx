@@ -4,12 +4,13 @@ import { Key, UserIcon, Eye } from "@/Icons/Auth";
 import { SignUpSchema, TSSignUpSchema } from "@/schemas/user";
 import { signup } from "@/services/signUp";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import { routes } from "@/constants/routes";
 import { roles } from "@/constants/roles";
 import { toast } from "sonner";
+import { Input } from "../ui/input";
 
 const SignUpForm = () => {
 
@@ -34,6 +35,7 @@ const SignUpForm = () => {
     if(resp.success){
       
       toast.success(resp.success)
+      router.push(routes.adminUsers)
      }
      if(resp.error){
       toast.error(resp.error)
@@ -66,7 +68,7 @@ const SignUpForm = () => {
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="email">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Correo"
             {...register("email")}
             type="text"
@@ -75,7 +77,7 @@ const SignUpForm = () => {
         </label>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="username">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Username"
             {...register("username")}
             type="text"
@@ -85,7 +87,7 @@ const SignUpForm = () => {
         <div className="flex gap-4">
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="first_name">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Nombre"
             {...register("first_name")}
             type="text"
@@ -94,7 +96,7 @@ const SignUpForm = () => {
         </label>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="last_name">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Apellidos"
             {...register("last_name")}
             type="text"
@@ -104,7 +106,7 @@ const SignUpForm = () => {
         </div>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="organization">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Organismo"
             {...register("organization")}
             type="text"
@@ -114,7 +116,7 @@ const SignUpForm = () => {
         <div className="flex gap-4">
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="password">
           <Key></Key>
-          <input  className="outline-none w-full"
+          <Input  className="outline-none w-full"
             placeholder="Contraseña"
             {...register("password")}
             type="text"
@@ -124,7 +126,7 @@ const SignUpForm = () => {
         </label>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="confirmPassword">
           <Key></Key>
-          <input  className="outline-none w-full"
+          <Input  className="outline-none w-full"
             placeholder="Repetir Contraseña"
             {...register("confirmPassword")}
             type="text"

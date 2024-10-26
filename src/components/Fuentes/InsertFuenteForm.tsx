@@ -9,8 +9,13 @@ import Button from "../ui/Button";
 import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Label } from "../ui/Label";
+import { useRouter } from "next/navigation";
+import { routes } from "@/constants/routes";
 
 const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
+
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -26,6 +31,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
     const resp = await insertFuente(data);
     if (resp.success) {
       toast.success(resp.success);
+      router.push(routes.adminFuentes)
     }
     if (resp.error) {
       toast.error(resp.error);
@@ -67,7 +73,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
             className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="url"
           >
-            <input
+            <Input
               className="outline-none w-full"
               placeholder="URL"
               {...register("url")}
@@ -79,7 +85,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="organization"
         >
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Organizacion"
             {...register("organization")}
@@ -93,7 +99,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="editores"
         >
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Editor"
             {...register("editores")}
@@ -109,7 +115,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
             className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="frequency"
           >
-            <input
+            <Input
               className="outline-none w-full"
               placeholder="Frecuencia"
               {...register("frequency")}
@@ -122,7 +128,7 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
             className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="materia"
           >
-            <input
+            <Input
               className="outline-none w-full"
               placeholder="Materia"
               {...register("materia")}

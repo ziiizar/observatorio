@@ -3,7 +3,7 @@ const AccountCard: React.FC = () => {
     <div className="relative w-full h-[50%]  overflow-hidden rounded-xl bg-burgundy-900 text-white shadow-lg">
       {/* Background texture */}
       <div 
-        className="absolute inset-0 opacity-10 bg-[url('/configTexture.png')] bg-center bg-cover bg-no-repeat" 
+        className="absolute inset-0 opacity-10 bg-[url('/configTexture.webp')] bg-center bg-cover bg-no-repeat" 
         
       />
       

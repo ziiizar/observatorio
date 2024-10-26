@@ -19,7 +19,7 @@ const NavLinks = ({links}: {links:Links[]}) => {
         <Link
           key={index}
           href={link.href}
-          className={cn('flex gap-2 items-center h-10 p-2 rounded-s-full ps-5  hover:text-black transition-all ', (link.href === pathname || pathname.startsWith(link.href)) && 'bg-white text-black' )}
+          className={cn('flex gap-2 items-center h-10 p-2 rounded-s-full ps-5  hover:underline  transition-all ', (link.href === pathname || pathname.startsWith(link.href)) && 'bg-white text-black' )}
         >
             {link.href === pathname || pathname.startsWith(link.href) ? <LinkIcon color={'black'}></LinkIcon>: 
             <LinkIcon  color={'white'}></LinkIcon>}

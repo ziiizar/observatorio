@@ -68,24 +68,24 @@ backdrop-filter: blur(80px);
 
 .backgroundLogin {
   border-radius: 24px;
-  background: url("/login-background.png") lightgray 50% / cover no-repeat;
+  background: url("/login-background.webp") lightgray 50% / cover no-repeat;
 }
 
 .backgroundAboutUs {
   border-radius: 24px;
-background: radial-gradient(39.61% 44.42% at 50% 55.58%, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.00) 100%), url("/about-us.png") lightgray 50% / cover no-repeat;
+background: radial-gradient(39.61% 44.42% at 50% 55.58%, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.00) 100%), url("/about-us.webp") lightgray 50% / cover no-repeat;
 }
 
 .background-radial-gradient {
   background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.00) 100%),
-    url("/about-us.png") lightgray center/cover no-repeat;
+    url("/about-us.webp") lightgray center/cover no-repeat;
 }
 
 .background-servicio-section{
-  background: url('/Servicios.png') lightgray 50% / cover no-repeat;
+  background: url('/Servicios.webp') lightgray 50% / cover no-repeat;
 }
 
 .background-dspace-section{
-  background: url('/DSpace.png') lightgray 50% / cover no-repeat;
+  background: url('/DSpace.webp') lightgray 50% / cover no-repeat;
 
 }

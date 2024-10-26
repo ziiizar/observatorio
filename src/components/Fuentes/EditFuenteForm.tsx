@@ -1,6 +1,6 @@
 "use client";
 
-import {TSUpdateFuenteSchema, UpdateFuenteSchema } from "@/schemas/fuentes";
+import { TSUpdateFuenteSchema, UpdateFuenteSchema } from "@/schemas/fuentes";
 import { updateFuente } from "@/services/fuente"; // Asegúrate de tener este servicio para actualizar
 import { EjeTematico } from "@/types/ejeTEmatico";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,29 +10,28 @@ import { Fuente } from "@/types/fuente";
 import { useEffect, useState } from "react";
 import { fetchEjesTematicos } from "@/data/ejesTematicos";
 import { toast } from "sonner";
+import { Input } from "../ui/input";
+import { useRouter } from "next/navigation";
 
 const EditFuenteForm = ({
- 
   fuente,
   onClose,
 }: {
-  
   fuente: Fuente;
   onClose: () => void;
 }) => {
+  const [ejes, setEjes] = useState<EjeTematico[] | null>(null);
 
-const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
+  useEffect(() => {
+    const fetchEjes = async () => {
+      const ejes = await fetchEjesTematicos();
+      setEjes(ejes);
+    };
 
-    useEffect(() => {
-        const fetchEjes = async () => {
-          const ejes = await fetchEjesTematicos();
-          setEjes(ejes);
-        };
-    
-        fetchEjes();
-      }, []);
+    fetchEjes();
+  }, []);
 
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -40,30 +39,29 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
   } = useForm<TSUpdateFuenteSchema>({
     resolver: zodResolver(UpdateFuenteSchema),
     defaultValues: {
-      id:fuente.id,
+      id: fuente.id,
       title: fuente.title || "",
       organization: fuente.organization || "",
       editores: fuente.editores || "",
       frequency: fuente.frequency || 2,
       url: fuente.url || "",
       materia: fuente.materia || "",
-      id_eje: fuente.id_eje, 
+      id_eje: fuente.id_eje,
       is_monitoring: fuente.is_monitoring || false,
     },
   });
 
   const onSubmit = async (data: TSUpdateFuenteSchema) => {
-    const resp = await updateFuente(data) // Actualiza la fuente usando su ID
-    if(resp.success){
-      
-      toast.success(resp.success)
-     }
-     if(resp.error){
-      toast.error(resp.error)
-     }
-     onClose()
+    const resp = await updateFuente(data); // Actualiza la fuente usando su ID
+    if (resp.success) {
+      toast.success(resp.success);
+      router.push(routes.adminFuentes);
+    }
+    if (resp.error) {
+      toast.error(resp.error);
+    }
+    onClose();
   };
-
 
   const firstError = (() => {
     const errorMessages = [
@@ -80,14 +78,13 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
 
   return (
     <div className="flex flex-col gap-4 w-[500px] rounded-xl shadow-shadowBlack p-6 bg-white">
-        
       <p className="text-4xl font-bold">Editar fuente</p>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="title"
         >
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Titulo"
             {...register("title")}
@@ -99,7 +96,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="url"
         >
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="URL"
             {...register("url")}
@@ -111,7 +108,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="editors"
         >
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Editor"
             {...register("editores")}
@@ -123,7 +120,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="organization"
         >
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Organizacion"
             {...register("organization")}
@@ -137,7 +134,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
             className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="frequency"
           >
-            <input
+            <Input
               className="outline-none w-full"
               placeholder="Frecuencia"
               {...register("frequency")}
@@ -149,7 +146,7 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
             className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
             htmlFor="matter"
           >
-            <input
+            <Input
               className="outline-none w-full"
               placeholder="Materia"
               {...register("materia")}
@@ -167,7 +164,11 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
           <select {...register("id_eje")} className="text-black">
             {/* <option value="">Seleccione un eje temático</option>  */}
             {ejes?.map((eje) => (
-              <option className="text-black" value={eje.id_eje} key={eje.id_eje}>
+              <option
+                className="text-black"
+                value={eje.id_eje}
+                key={eje.id_eje}
+              >
                 {eje.nombre_eje}
               </option>
             ))}
@@ -176,9 +177,8 @@ const [ejes, setEjes] = useState<EjeTematico[] | null>(null)
 
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
 
-
         <div className="flex justify-end gap-4">
-          <Button onClick={onClose} className="bg-gray-400 text-white" >
+          <Button onClick={onClose} className="bg-gray-400 text-white">
             Cancelar
           </Button>
           <Button

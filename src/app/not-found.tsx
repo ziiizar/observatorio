@@ -12,7 +12,7 @@ export default function NotFound() {
     <main className={cn("min-h-screen flex  items-center justify-between px-40", outfit.className)}>
       
         <Image
-          src="/not-found.png"
+          src="/not-found.webp"
           alt="404 Not Found"
           width={400}
           height={300}

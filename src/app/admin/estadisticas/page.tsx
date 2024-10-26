@@ -8,6 +8,7 @@ import { exportTableToExcel } from "@/lib/exports";
 import Link from "next/link";
 import { orderOptions } from "../../../types/orderOptions";
 import EjesPieChart from "@/components/Admin/Estadisticas/EjesPieChart";
+import { ExportIcon } from '../../../Icons/Table';
 
 const page = async ({
   searchParams,
@@ -37,9 +38,10 @@ const page = async ({
             <Link href={routes.crearEje}>+ Registrar Eje Tematico</Link>
           </Button>
           <Button
-            className="w-36 border-burgundy-900 border-2 text-burgundy-900"
+            className=" w-36 border-burgundy-900 border-2 text-burgundy-900 flex gap-2"
             onClick={exportTableToExcel}
           >
+            <ExportIcon className={'group-hover:fill-white fill-burgundy-900'}></ExportIcon>
             Exportar
           </Button>
           <OrderBy columns={orderOptions.EJES}></OrderBy>

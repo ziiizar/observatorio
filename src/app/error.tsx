@@ -1,5 +1,6 @@
 'use client'
 
+import { routes } from '@/constants/routes'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
@@ -15,7 +16,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-900 to-red-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-burgundy-900 to-burgundy-950 text-white">
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
           <div className="flex items-center">
@@ -37,13 +38,13 @@ export default function Error({
             <div className="space-x-4">
               <button
                 onClick={reset}
-                className="bg-white text-red-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                className="bg-white text-burgundy-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
               >
                 Intentar de nuevo
               </button>
               <Link
-                href="/"
-                className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-red-900 transition duration-300"
+                href={routes.home}
+                className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-burgundy-900 transition duration-300"
               >
                 Volver al inicio
               </Link>

@@ -27,7 +27,7 @@ export default async function ServicesLayout({
       {/* <div className="flex p-6"> */}
       <Suspense fallback={<AsideSkeleton></AsideSkeleton>}>
         <Aside>
-          {user.role === "observador" ? (
+          {user?.role === "observador" ? (
             <NavLinks links={ObservadorServiceLinks}></NavLinks>
           ) : (
             <NavLinks links={ServicesLinks}></NavLinks>

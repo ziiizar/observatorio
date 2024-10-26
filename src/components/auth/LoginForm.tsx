@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import { routes } from "@/constants/routes";
 import { Email, Facebook, Instagram, Phone, Twitter } from "@/Icons/Social";
+import { Input } from "../ui/input";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const LoginForm = () => {
           htmlFor="username"
         >
           <UserIcon></UserIcon>
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Nombre de usuario"
             {...register("username")}
@@ -56,7 +57,7 @@ const LoginForm = () => {
           htmlFor="password"
         >
           <Key></Key>
-          <input
+          <Input
             className="outline-none w-full"
             placeholder="Contraseña"
             {...register("password")}

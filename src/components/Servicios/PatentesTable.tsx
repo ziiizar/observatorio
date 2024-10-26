@@ -7,6 +7,7 @@ import {fetchPatents} from "@/data/patents";
 import { Patente } from "@/types/patente";
 import TableCell from "@/components/Table/TableCell";
 import Button from "@/components/ui/Button";
+import { DeleteIcon } from "@/Icons/Table";
 
 const PatentesTable = async ({patentes}: {patentes: Patente[]}) => {
 
@@ -30,7 +31,7 @@ const PatentesTable = async ({patentes}: {patentes: Patente[]}) => {
             <TableCell className="">
               {
                 <div className="flex gap-2">
-                  <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900">x</Button>
+                  <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"><DeleteIcon className={'group-hover:fill-white fill-burgundy-900'}></DeleteIcon></Button>
                   
                 </div>
               }

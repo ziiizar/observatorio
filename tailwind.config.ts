@@ -60,7 +60,7 @@ const config: Config = {
         '950': '#030712',
       },
     
-    white: "white",
+    white: "#F6F6F6",
     black: "black",
     transparent: "transparent",
     inherit: "inherit",
@@ -69,6 +69,7 @@ const config: Config = {
     extend: {
       boxShadow: {
         shadowBlack: '0px 0px 30px 0px rgba(0, 0, 0, 0.50)',
+        shadowBlackSmall: '0px 0px 10px 0px rgba(0, 0, 0, 0.50)',
         shadowRed: '0px 0px 15px 0px rgba(155, 9, 38, 0.50)',
         shadowWhite: '0px 0px 15px 0px rgba(246, 246, 246, 0.40)',
       },

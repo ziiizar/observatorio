@@ -14,6 +14,7 @@ import EditFuenteForm from "@/components/Fuentes/EditFuenteForm";
 import { deleteFuente, startMonitoring } from "@/services/fuente"; // Importa la función para eliminar la fuente
 import { AuthUser } from "@/types/user";
 import { toast } from "sonner";
+import { DeleteIcon, EditIcon } from "@/Icons/Table";
 
 const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) => {
   const [selectedFuente, setSelectedFuente] = useState<Fuente | null>(null);
@@ -75,7 +76,7 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) =>
           {fuentes.map((fuente) => (
             <TableRow className="" key={fuente.id}>
               <TableCell className="">
-                {user.role === 'observador' ? (<Button
+                {user?.role === 'observador' ? (<Button
                     className=" w-16 h-8 rounded-full bg-burgundy-900 text-white"
                     onClick={() => startMonitoring(fuente.id)} // Abrir el modal de edición con la fuente seleccionada
                   >
@@ -85,13 +86,13 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) =>
                     className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"
                     onClick={() => handleDeleteClick(fuente)}
                   >
-                    x
+                    <DeleteIcon className={'group-hover:fill-white fill-burgundy-900'}></DeleteIcon>
                   </Button>
                   <Button
                     className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"
                     onClick={() => handleEditClick(fuente)} // Abrir el modal de edición con la fuente seleccionada
                   >
-                    E
+                    <EditIcon></EditIcon>
                   </Button>
                 </div>)}
               </TableCell>

@@ -25,7 +25,7 @@ const AuthBox = ({ user }: { user: AuthUser }) => {
         </>
       ) : (
         <Button className="w-full max-w-[144px] bg-black text-white hover:shadow-shadowBlack transition-all duration-200 ease-in-out text-[clamp(0.75rem,2vw,1rem)]">
-          <Link className="w-full" href={routes.login}>Iniciar sesión</Link>
+          <Link className="w-32" href={routes.login}>Iniciar sesión</Link>
         </Button>
       )}
     </div>

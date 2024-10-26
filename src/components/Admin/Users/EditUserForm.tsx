@@ -9,6 +9,9 @@ import { User } from "@/types/user";
 import { Eye, Key, UserIcon } from "@/Icons/Auth";
 import { roles } from "@/constants/roles";
 import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+import { routes } from "@/constants/routes";
 
 
 const EditUserForm = ({
@@ -31,7 +34,7 @@ const EditUserForm = ({
     
 //         fetchEjes();
 //       }, []);
-
+const router = useRouter()
 
   const {
     register,
@@ -54,6 +57,7 @@ const EditUserForm = ({
     const resp = await updateUser(data) 
     if(resp.success){
       toast.success(resp.success)
+      router.push(routes.adminUsers)
      }
      if(resp.error){
       toast.error(resp.error)
@@ -84,7 +88,7 @@ const EditUserForm = ({
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="email">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Correo"
             {...register("email")}
             type="text"
@@ -93,7 +97,7 @@ const EditUserForm = ({
         </label>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="username">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Username"
             {...register("username")}
             type="text"
@@ -103,7 +107,7 @@ const EditUserForm = ({
         <div className="flex gap-4">
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="first_name">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Nombre"
             {...register("first_name")}
             type="text"
@@ -112,7 +116,7 @@ const EditUserForm = ({
         </label>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="last_name">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Apellidos"
             {...register("last_name")}
             type="text"
@@ -122,7 +126,7 @@ const EditUserForm = ({
         </div>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="organization">
           <UserIcon></UserIcon>
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Organismo"
             {...register("organization")}
             type="text"
@@ -132,7 +136,7 @@ const EditUserForm = ({
         
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="repeatPassword">
           <Key></Key>
-          <input  className="outline-none w-full"
+          <Input  className="outline-none w-full"
             placeholder="Repetir Contraseña"
             // {...register("password")}
             type="text"

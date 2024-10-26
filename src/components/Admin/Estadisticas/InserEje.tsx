@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/Label";
+import { Input } from "@/components/ui/input";
 
 const InsertEje = () => {
 
@@ -33,6 +34,7 @@ const InsertEje = () => {
     if(resp.success){
       
       toast.success(resp.success)
+      router.push(routes.adminEstadisticas)
      }
      if(resp.error){
       toast.error(resp.error)
@@ -58,7 +60,7 @@ const InsertEje = () => {
 
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex gap-4 border border-shark-950 rounded-lg \ items-center p-2" htmlFor="nombre_eje">
-          <input className="outline-none w-full"
+          <Input className="outline-none w-full"
             placeholder="Nombre"
             {...register("nombre_eje")}
             type="text"

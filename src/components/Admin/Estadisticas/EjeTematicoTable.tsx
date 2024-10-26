@@ -14,6 +14,7 @@ import { deleteEje } from "@/services/eje";
 import { toast } from "sonner";
 import Modal from "@/components/ui/Modal";
 import EditEjeForm from "./EditEjeForm";
+import { DeleteIcon, EditIcon } from "@/Icons/Table";
 
 const EjeTematicoTable =  ({ejes}: {ejes:EjeTematico[]}) => {
 
@@ -74,8 +75,8 @@ const EjeTematicoTable =  ({ejes}: {ejes:EjeTematico[]}) => {
             <TableCell className="">
               {
                 <div className="flex gap-2">
-                  <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900" onClick={() => handleDeleteClick(eje)}>x</Button>
-                  <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900" onClick={() => handleEditClick(eje)}>E</Button>
+                  <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900" onClick={() => handleDeleteClick(eje)}><DeleteIcon className={'group-hover:fill-white fill-burgundy-900'}></DeleteIcon></Button>
+                  <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900" onClick={() => handleEditClick(eje)}><EditIcon></EditIcon></Button>
                 </div>
               }
             </TableCell>
