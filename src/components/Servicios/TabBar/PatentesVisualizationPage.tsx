@@ -1,23 +1,19 @@
-import { cn } from "@/lib/utils"
-import PatentesPieChart from "../PatentesPieChart"
+import { cn } from "@/lib/utils";
+import PatentesPieChart from "../PatentesPieChart";
 
-const PatentesVisualizationPage = ({patentData}) => {
+const PatentesVisualizationPage = ({ patentData }) => {
   return (
     <div className=" w-full  h-full rounded-xl  flex flex-col gap-4 p-4">
-        <div className="flex flex-col">
-          <h4>Patentes por paises</h4>
+      <div className="flex flex-col">
+        <h4>Patentes por paises</h4>
 
-          <div></div>
-          {/* <Button className="w-36 border-burgundy-900 border-2 text-burgundy-900">
-          Exportar
-        </Button> */}
-        </div>
-    <div className="relative flex h-full w-full">
-        <div className="absolute blur-2xl flex w-full h-full"><PatentesPieChart data={patentData}></PatentesPieChart></div>
-    <div className="flex w-full h-full">
-      <PatentesPieChart data={patentData}>
-        </PatentesPieChart>
-        {/* <div className="w-1/4 flex flex-col justify-center">
+        <div className="relative flex h-[450px] w-full">
+          <div className="absolute blur-2xl flex w-full h-full">
+            <PatentesPieChart data={patentData}></PatentesPieChart>
+          </div>
+          <div className="flex w-full h-full">
+            <PatentesPieChart data={patentData}></PatentesPieChart>
+            {/* <div className="w-1/4 flex flex-col justify-center">
         <h5 className="text-lg font-semibold mb-4">Leyenda</h5>
         <ul className="space-y-2">
           {patentData.map((item) => (
@@ -32,16 +28,11 @@ const PatentesVisualizationPage = ({patentData}) => {
           ))}
         </ul>
       </div> */}
-
+          </div>
         </div>
-        </div>
-
-        {/* <div className="flex w-full h-full">
-          <RegistrosBarChart data={registrationData}></RegistrosBarChart>
-          <RegistrationLineChart data={registrationData}></RegistrationLineChart>
-        </div> */}
       </div>
-  )
-}
+    </div>
+  );
+};
 
-export default PatentesVisualizationPage
+export default PatentesVisualizationPage;

@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 const Patentes = dynamic(() => import("./PatentesVisualizationPage"), { ssr: false });
 const Registros = dynamic(() => import("./RegistrosVisualizationPage"), { ssr: false });
 
-const ProfileNavbar = ({patentData, registrationData}) => {
+const GraphicsNavbar = ({patentData, registrationData}) => {
   const [selectedSection, setSelectedSection] = useState<
     "Patentes" | "Registros" 
   >("Patentes");
@@ -17,10 +17,6 @@ const ProfileNavbar = ({patentData, registrationData}) => {
     [registrationData]
   );
 
-  // const memoizedGymTrainers = useMemo(
-  //   () => <GymTrainers gymId={gymId} />,
-  //   [gymId]
-  // );
 
   return (
     <section className="flex flex-col gap-3">
@@ -61,4 +57,4 @@ const ProfileNavbar = ({patentData, registrationData}) => {
   );
 };
 
-export default ProfileNavbar;
+export default GraphicsNavbar;

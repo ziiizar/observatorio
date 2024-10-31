@@ -44,13 +44,6 @@ export const routes: routes = {
   adminBoletines: "/admin/boletines",
   dspace: 'https://dspace.uclv.edu.cu/',
   vivo: 'http://vivo.uclv.edu.cu/',
-
-  // register: "/Register",
-  // confirmEmail: '/confirm-email',
-  // verifyEmail: '/auth/email-verification',
-  // profile: "/Profile/Dashboard",
-  // reset: '/Reset',
-  // newPassword: '/auth/new-password',
 };
 
 const PUBLIC_ROUTES = [
@@ -59,7 +52,6 @@ const PUBLIC_ROUTES = [
   routes.services,
   routes.aboutUs,
 ];
-// const PREFIX_PUBLIC_ROUTES = [];
 const PRIVATE_ROUTES = [routes.admin, , routes.patentes, routes.registros];
 const AUTH_ROUTES = [routes.login];
 const ADMIN_ROUTES = [

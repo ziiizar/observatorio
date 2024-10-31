@@ -1,7 +1,7 @@
 import PatentesPieChart from "@/components/Servicios/PatentesPieChart";
 import RegistrosBarChart from "@/components/Servicios/RegistrosBarChart";
 import RegistrationLineChart from "@/components/Servicios/RegistrosLinearChart";
-import ProfileNavbar from "@/components/Servicios/TabBar/ProfileNavbar";
+import GraphicsNavbar from "@/components/Servicios/TabBar/GraphicsNavbar";
 // import Button from "@/components/ui/Button";
 
 const page = () => {
@@ -58,7 +58,7 @@ const page = () => {
 
   return (
     <main className="[grid-area:main] w-full h-full  flex flex-col  gap-4  overflow-hidden pt-4 px-4 ">
-      <ProfileNavbar patentData={patentData} registrationData={registrationData}></ProfileNavbar>
+      <GraphicsNavbar patentData={patentData} registrationData={registrationData}></GraphicsNavbar>
     </main>
   );
 };

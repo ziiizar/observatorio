@@ -3,14 +3,17 @@ import TableBody from "@/components/Table/TableBody";
 import TableHead from "@/components/Table/TableHead";
 import TableRow from "@/components/Table/TableRow";
 import TableHeadRow from "@/components/Table/TableHeadRow";
-import { fetchRegistros } from "@/data/registros";
 import { Registros } from "@/types/registro";
 import TableCell from "@/components/Table/TableCell";
 import Button from "@/components/ui/Button";
 import { DeleteIcon } from "@/Icons/Table";
+import { formatRegistros } from "@/lib/utils";
 
 const RegistrosTable = async ({registros}: {registros:Registros[]}) => {
 
+  const formatedRegistros = registros.map((item: Registros) =>
+    formatRegistros(item)
+  );
 
 
   return (
@@ -27,16 +30,9 @@ const RegistrosTable = async ({registros}: {registros:Registros[]}) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {registros.map((registro) => {
-          try {
-            // Convertir el campo 'metadata' en un objeto
-            const metadataObject = JSON.parse(registro.metadata);
-
-            // Extraer el campo 'description'
-            const description = metadataObject._map.description
-              ? metadataObject._map.description[0] // Aquí accedes al primer valor del array 'description'
-              : "Sin descripción disponible";
-
+        {formatedRegistros.map((registro) => {
+          
+         
             return (
               <TableRow className=" " key={registro.id}>
                 <TableCell className=" ">
@@ -48,31 +44,26 @@ const RegistrosTable = async ({registros}: {registros:Registros[]}) => {
                 </TableCell>
                 {/* Aquí puedes agregar más celdas para otros campos */}
                 <TableCell className="border-l-2 border-dusty-gray-300">
-                  {metadataObject._map.title ? metadataObject._map.title[0] : "Sin título"}
+                  {registro.title }
                 </TableCell>
                 <TableCell className="border-l-2 border-dusty-gray-300">
-                  {metadataObject._map.creator ? metadataObject._map.creator.join(", ") : "Sin autor"}
+                  {registro.creators}
                 </TableCell>
                 <TableCell className="border-l-2 border-dusty-gray-300">
-                  {metadataObject._map.date ? metadataObject._map.date[0] : "Sin fecha"}
+                  {registro.date}
                 </TableCell>
                 <TableCell className="border-l-2 border-dusty-gray-300">
-                  {metadataObject._map.publisher ? metadataObject._map.publisher[0] : "Sin editorial"}
+                  {registro.publisher}
                 </TableCell>
                 <TableCell className="border-l-2 border-dusty-gray-300">
-                  {metadataObject._map.subject ? metadataObject._map.subject.join(", ") : "Sin materia"}
+                  {registro.subject}
                 </TableCell>
                 <TableCell className="border-l-2 border-dusty-gray-300">
-                  {description}
+                  {registro.description}
                 </TableCell>
               </TableRow>
             );
-          } catch (error) {
-            console.error("Error parsing metadata:", error);
-            return (
-              null
-            );
-          }
+          
         })}
       </TableBody>
     </Table>
