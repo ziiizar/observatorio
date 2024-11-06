@@ -2,8 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { zodiak } from "@/styles/fonts";
-import Image from "next/image";
-import { useState } from "react";
 
 export type Color = { selected: string; unselected: string };
 

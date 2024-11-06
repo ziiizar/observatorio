@@ -1,28 +1,36 @@
 import { axiosInstance } from "@/lib/utils";
+import { EjeTematico } from "@/types/ejeTEmatico";
 
-export const fetchEjesTematicos = async ({
-  orderBy='nombre_eje',
-  currentPage = 1,
-  limit = undefined,
-  sortOrder = "asc",
-}: {
-  orderBy?: string;
+export interface FetchEjesParams {
+  orderBy?: "nombre_eje" | "id_eje" | "esta_activo";
   currentPage?: number;
   limit?: number;
-  sortOrder?: string;
-}) => {
+  sortOrder?: "asc" | "desc";
+}
+
+
+interface FetchEjesResponse {
+  ejes: EjeTematico[];
+  total_pages: number;
+  total_ejes: number;
+}
+
+export const fetchEjesTematicos = async ({
+  orderBy = 'nombre_eje',
+  currentPage = 1,
+  limit,
+  sortOrder = "asc",
+}: FetchEjesParams): Promise<FetchEjesResponse> => {
   const offset = limit ? (currentPage - 1) * limit : 0;
 
-  const params: Record<string, any> = {
-    ...(limit !== undefined && { limit }), // Incluir solo si está definido
-    ...({ offset }), // Incluir solo si está definido
-    ...(orderBy !== undefined && { orderBy }), // Incluir solo si está definido
-    ...(sortOrder !== undefined && { sortOrder }), // Incluir solo si está definido
+  const params: Partial<FetchEjesParams> & { offset: number } = {
+    ...(limit !== undefined && { limit }),
+    offset,
+    ...(orderBy && { orderBy }),
+    ...(sortOrder && { sortOrder }),
   };
 
-  const ejes = await axiosInstance.get(
-    `ejes`, {params}
-  );
-  console.log(ejes.data);
-  return ejes.data;
+  const response = await axiosInstance.get<FetchEjesResponse>('ejes', { params });
+  console.log(response.data);
+  return response.data;
 };

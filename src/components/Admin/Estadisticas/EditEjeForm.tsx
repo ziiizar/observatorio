@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import { toast } from "sonner";
 import { updateEje } from "@/services/eje";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { useRouter } from "next/navigation";
 import { routes } from "@/constants/routes";
 
@@ -79,7 +79,7 @@ const EditEjeForm = ({
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
 
 
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Aceptar</Button>
+        <Button disabled={isSubmitting} className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Aceptar</Button>
       </form>
      
         <Button onClick={onClose}>Cerrar</Button>

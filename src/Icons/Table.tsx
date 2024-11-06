@@ -39,7 +39,7 @@ export function ArrowRight() {
     );
   }
 
-  export function ExportIcon({className}) {
+  export function ExportIcon({className}:{className:string}) {
     return (
       <svg
       className={cn('fill-burgundy-900  group-hover:fill-white transition-all duration-200 ease-in-out', className)}
@@ -57,7 +57,7 @@ export function ArrowRight() {
   
 
 
-  export function DeleteIcon({className}) {
+  export function DeleteIcon({className}:{className:string}) {
     return (
       <svg
       className={cn('fill-burgundy-900  transition-all duration-200 ease-in-out', className)}

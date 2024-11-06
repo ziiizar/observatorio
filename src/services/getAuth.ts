@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/lib/utils";
 import { cookies } from "next/headers";
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode, JwtPayload } from "jwt-decode";
 
 export const getAuth = async () => {
   const cookieStore = cookies();
@@ -9,11 +9,14 @@ export const getAuth = async () => {
   if (!token) {
     return null; // Si no hay token, devuelve null (no autenticado)
   }
-  const decodedToken = jwtDecode(token);
 
-  const currentTime = Math.floor(Date.now() / 1000); // Obtener el tiempo actual en segundos
-  if (decodedToken.exp < currentTime) {
-    return null; // Si el token ha expirado, devuelve null
+  // Decodificar el token y tiparlo como JwtPayload
+  const decodedToken = jwtDecode<JwtPayload>(token);
+
+  // Verificar si exp está definido y si ha expirado
+  const currentTime = Math.floor(Date.now() / 1000);
+  if (!decodedToken.exp || decodedToken.exp < currentTime) {
+    return null; // Si el token ha expirado o no tiene exp, devuelve null
   }
 
   try {

@@ -1,4 +1,3 @@
-import ExportButton from "@/components/ExportButton";
 import PatentesTable from "@/components/Servicios/PatentesTable";
 import OrderBy from "@/components/Table/OrderBy";
 import Pagination from "@/components/Table/Pagination";
@@ -15,12 +14,12 @@ const Page = async ({
   searchParams?: {
     query?: string;
     page?: string;
-    orderBy?: string;
+    orderBy?: "id" | "abstract" | "description" | "claims" | "patent_office" | "url" | "fuente_id"
   };
 }) => {
   const limit = 5;
   const currentPage = Number(searchParams?.page) || 1;
-  const currentOrder = searchParams?.orderBy || "fuente_id";
+  const currentOrder:"id" | "abstract" | "description" | "claims" | "patent_office" | "url" | "fuente_id"  = searchParams?.orderBy || "fuente_id";
 
   const totalPages = await fetchPatentsTotalPages({ limit });
   const patentes: Patente[] = await fetchPatents({

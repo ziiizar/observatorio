@@ -1,7 +1,5 @@
-import { routes } from "@/constants/routes";
 import Cookies from "js-cookie";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+
 
 export const logout = async () => {
   try {

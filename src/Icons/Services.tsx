@@ -1,4 +1,4 @@
-export function Registros({color}) {
+export function Registros({color}:{color:string}) {
     return (
         <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@ export function Registros({color}) {
   }
 
 
-  export function Patentes({color}) {
+  export function Patentes({color}:{color:string}) {
     return (
         <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ export function Registros({color}) {
 
 
 
-  export function Visualizacion({color}) {
+  export function Visualizacion({color}:{color:string}) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill={color}>
         <path d="M0 0.5H2V14.7222H18V16.5H0V0.5ZM4 12.9444V5.83333H8V12.9444H4ZM9 12.9444V2.27778H13V12.9444H9ZM14 12.9444V8.5H18V12.9444H14Z" fill={color}/>

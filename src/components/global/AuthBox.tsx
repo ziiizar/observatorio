@@ -2,7 +2,6 @@
 
 import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
-import { logout } from "@/services/logout";
 import Link from "next/link";
 import { AuthUser } from '../../types/user';
 import ProfileHeaderButton from "./ProfileHeaderButton";

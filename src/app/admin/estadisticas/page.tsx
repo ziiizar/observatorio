@@ -7,7 +7,6 @@ import { fetchEjesTematicos } from "@/data/ejesTematicos";
 import { exportTableToExcel } from "@/lib/exports";
 import Link from "next/link";
 import { orderOptions } from "../../../types/orderOptions";
-import EjesPieChart from "@/components/Admin/Estadisticas/EjesPieChart";
 import { ExportIcon } from '../../../Icons/Table';
 
 const page = async ({
@@ -16,13 +15,13 @@ const page = async ({
   searchParams?: {
     query?: string;
     page?: string;
-    orderBy?: string;
+    orderBy?: "nombre_eje" | "id_eje" | "esta_activo";
   };
 }) => {
   const limit = 5;
 
   const currentPage = Number(searchParams?.page) || 1;
-  const currentOrder = searchParams?.orderBy || "nombre_eje";
+  const currentOrder:"nombre_eje" | "id_eje" | "esta_activo" = searchParams?.orderBy || "nombre_eje";
 
   const { ejes, total_pages: totalPages } = await fetchEjesTematicos({
     limit,

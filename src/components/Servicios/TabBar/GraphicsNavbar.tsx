@@ -1,19 +1,21 @@
 "use client";
 
+import { Patente } from "@/types/patente";
+import { formattedRegistros} from "@/types/registro";
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 
-const Patentes = dynamic(() => import("./PatentesVisualizationPage"), { ssr: false });
-const Registros = dynamic(() => import("./RegistrosVisualizationPage"), { ssr: false });
+const PatentesSection = dynamic(() => import("./PatentesVisualizationPage"), { ssr: false });
+const RegistrosSection = dynamic(() => import("./RegistrosVisualizationPage"), { ssr: false });
 
-const GraphicsNavbar = ({patentData, registrationData}) => {
+const GraphicsNavbar = ({patentData, registrationData}:{patentData:Patente[], registrationData: formattedRegistros[]}) => {
   const [selectedSection, setSelectedSection] = useState<
     "Patentes" | "Registros" 
   >("Patentes");
 
-  const memoizedPatentes = useMemo(() => <Patentes  patentData={patentData}/>,[patentData]);
+  const memoizedPatentes = useMemo(() => <PatentesSection  patentData={patentData}/>,[patentData]);
   const memoizedRegistros = useMemo(
-    () => <Registros  registrationData={registrationData}/>,
+    () => <RegistrosSection  registrationData={registrationData}/>,
     [registrationData]
   );
 

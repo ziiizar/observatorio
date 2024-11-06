@@ -8,7 +8,7 @@ import { outfit, zodiak } from "@/styles/fonts";
 const page = () => {
   return (
     <>
-      <Header></Header>
+      <Header landing={false}></Header>
       <main
         className={cn(
           "bg-white flex flex-col min-h-screen gap-6",

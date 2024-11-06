@@ -1,13 +1,11 @@
 import UsersTable from "@/components/Admin/Users/UsersTable";
-import ExportButton from "@/components/ExportButton";
 import Pagination from "@/components/Table/Pagination";
 import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
 import { fetchAllUsers, fetchUsersTotalPages } from "@/data/users";
 import { User } from "@/types/user";
 import Link from "next/link";
-import { exportTableToPDF, exportTableToExcel } from "@/lib/exports";
-import TableSkeleton from "@/components/ui/Skeletons/TableSkeleton";
+import { exportTableToExcel } from "@/lib/exports";
 import { ExportIcon } from "@/Icons/Table";
 
 const page = async ({

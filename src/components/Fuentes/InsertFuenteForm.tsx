@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
+import { Input } from "../ui/Input";
 import { Label } from "../ui/Label";
 import { useRouter } from "next/navigation";
 import { routes } from "@/constants/routes";
@@ -139,23 +139,24 @@ const InsertFuenteForm = ({ ejes }: { ejes: EjeTematico[] }) => {
         </div>
 
         {/* Selector de ejes temáticos */}
-        <label
-          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
-          htmlFor="id_eje"
-        >
-          <select {...register("id_eje")} className="text-black">
-            <option value="">Seleccione un eje temático</option>
-            {ejes.map((eje) => (
-              <option
-                className="text-black"
-                value={eje.id_eje}
-                key={eje.id_eje}
-              >
-                {eje.nombre_eje}
-              </option>
-            ))}
-          </select>
-        </label>
+       
+          <select
+  {...register("id_eje")}
+  className="h-11 px-4 rounded-lg border border-shark-950 bg-white text-black focus:outline-none "
+>
+  <option value="" className="text-gray-500">Seleccione un eje temático</option>
+  {ejes.map((eje) => (
+    <option
+      value={eje.id_eje}
+      key={eje.id_eje}
+      className="text-black hover:bg-dusty-gray-200 hover:text-black transition-all duration-300 ease-in-out"
+    >
+      {eje.nombre_eje}
+    </option>
+  ))}
+</select>
+
+        
 
         {/* Mostrar el primer error encontrado */}
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}

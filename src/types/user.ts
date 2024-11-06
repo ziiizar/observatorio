@@ -9,7 +9,7 @@ export type UserRole = typeof userRole[keyof typeof userRole];
 
 
 export type User = {
-    id: string
+    id: number
     username: string;
     first_name: string;
     last_name: string;

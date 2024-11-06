@@ -14,7 +14,7 @@ export default function AdminLayout({
   return (
     <div className="adminLayoutGrid  overflow-y-auto overflow-x-auto z-10  pb-4 gap-x-4">
       <div className="[grid-area:header]">
-        <Header></Header>
+        <Header landing={false}></Header>
       </div>
       
         {/* <div className="flex p-6"> */}

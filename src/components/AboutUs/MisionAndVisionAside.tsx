@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import AsideCard from "./AsideCard";
 
-const MisionAndVisionAside = ({setSelectedSection, selectedSection}) => {
+const MisionAndVisionAside = ({setSelectedSection, selectedSection}:{setSelectedSection:Dispatch<SetStateAction<"mision" | "vision">>, selectedSection:'mision' | 'vision'}) => {
 
 
 

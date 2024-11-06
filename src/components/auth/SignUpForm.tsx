@@ -10,7 +10,7 @@ import Button from "../ui/Button";
 import { routes } from "@/constants/routes";
 import { roles } from "@/constants/roles";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
+import { Input } from "../ui/Input";
 
 const SignUpForm = () => {
 
@@ -136,24 +136,21 @@ const SignUpForm = () => {
         </label>
         </div>
 
-        <label
-          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
-          htmlFor="role"
-        >
-          <select {...register("role")} className="text-black">
+    
+          <select {...register("role")} className="h-11 px-4 rounded-lg border border-shark-950 bg-white text-black focus:outline-none ">
             <option value="">Seleccione un rol</option> {/* Opción por defecto */}
             {roles.map((role) => (
-              <option className="text-black " key={role.value} value={role.value}>
+              <option className="text-gray-500 " key={role.value} value={role.value}>
                 {role.label}
               </option>
             ))}
           </select>
-        </label>
+        
 
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
 
 
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
+        <Button disabled={isSubmitting} className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
       </form>
     </div>
   );

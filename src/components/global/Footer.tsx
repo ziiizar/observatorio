@@ -40,8 +40,8 @@ export default function Footer() {
               </div>
             </Link>
             <p className="mt-4 max-w-md text-sm mx-auto md:mx-0">
-              "El verdadero progreso es el que pone la tecnología al alcance de
-              todos."
+              El verdadero progreso es el que pone la tecnología al alcance de
+              todos.
             </p>
             <p className="mt-2 text-sm">Thomas Edison</p>
           </div>

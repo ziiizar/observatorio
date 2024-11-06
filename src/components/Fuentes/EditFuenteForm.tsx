@@ -10,8 +10,9 @@ import { Fuente } from "@/types/fuente";
 import { useEffect, useState } from "react";
 import { fetchEjesTematicos } from "@/data/ejesTematicos";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
+import { Input } from "../ui/Input";
 import { useRouter } from "next/navigation";
+import { routes } from "@/constants/routes";
 
 const EditFuenteForm = ({
   fuente,
@@ -24,7 +25,7 @@ const EditFuenteForm = ({
 
   useEffect(() => {
     const fetchEjes = async () => {
-      const ejes = await fetchEjesTematicos();
+      const {ejes} = await fetchEjesTematicos({});
       setEjes(ejes);
     };
 
@@ -46,7 +47,7 @@ const EditFuenteForm = ({
       frequency: fuente.frequency || 2,
       url: fuente.url || "",
       materia: fuente.materia || "",
-      id_eje: fuente.id_eje,
+      id_eje: fuente.id_eje || undefined,
       is_monitoring: fuente.is_monitoring || false,
     },
   });
@@ -157,23 +158,23 @@ const EditFuenteForm = ({
         </div>
 
         {/* Selector de ejes temáticos */}
-        <label
-          className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
-          htmlFor="id_eje"
-        >
-          <select {...register("id_eje")} className="text-black">
-            {/* <option value="">Seleccione un eje temático</option>  */}
-            {ejes?.map((eje) => (
-              <option
-                className="text-black"
-                value={eje.id_eje}
-                key={eje.id_eje}
-              >
-                {eje.nombre_eje}
-              </option>
-            ))}
-          </select>
-        </label>
+     
+           <select
+  {...register("id_eje")}
+  className="h-11 px-4 rounded-lg border border-shark-950 bg-white text-black focus:outline-none "
+>
+  <option value="" className="text-gray-500">Seleccione un eje temático</option>
+  {ejes?.map((eje) => (
+    <option
+      value={eje.id_eje}
+      key={eje.id_eje}
+      className="text-black hover:bg-dusty-gray-200 hover:text-black transition-all duration-300 ease-in-out"
+    >
+      {eje.nombre_eje}
+    </option>
+  ))}
+</select>
+       
 
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
 

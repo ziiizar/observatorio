@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-function WhiteCircle({className}) {
+function WhiteCircle({className}:{className:string}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

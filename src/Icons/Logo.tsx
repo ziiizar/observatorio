@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-function Logo({className, fill} ) {
+function Logo({className, fill}:{className:string, fill:string} ) {
   return (
     <svg
     className={cn('', className)}

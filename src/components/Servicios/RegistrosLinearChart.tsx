@@ -7,7 +7,7 @@ interface RegistrationData {
   cant: number
 }
 
-export default function RegistrationLineChart({data}) {
+export default function RegistrationLineChart({data}: {data: RegistrationData[]}) {
   
 
   const chartData = [

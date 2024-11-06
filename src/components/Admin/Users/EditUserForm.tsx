@@ -9,9 +9,17 @@ import { User } from "@/types/user";
 import { Eye, Key, UserIcon } from "@/Icons/Auth";
 import { roles } from "@/constants/roles";
 import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { useRouter } from "next/navigation";
 import { routes } from "@/constants/routes";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/Select";
+
 
 
 const EditUserForm = ({
@@ -72,7 +80,6 @@ const router = useRouter()
       errors.organization?.message,
       errors.first_name?.message,
       errors.last_name?.message,
-      errors.password?.message,
       errors.role?.message,
       errors.username?.message,
     ];
@@ -150,20 +157,24 @@ const router = useRouter()
           className="flex gap-4 border border-shark-950 rounded-lg items-center p-2"
           htmlFor="role"
         >
-          <select {...register("role")} className="text-black">
-            <option value="">Seleccione un rol</option> {/* Opción por defecto */}
-            {roles.map((role) => (
-              <option className="text-black " key={role.value} value={role.value}>
+          <Select {...register("role")}>
+          <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Selecciona un rol" />
+                </SelectTrigger>
+                <SelectContent>{roles.map((role) => (
+              <SelectItem className="text-black " key={role.value} value={role.value}>
                 {role.label}
-              </option>
+              </SelectItem>
             ))}
-          </select>
+            </SelectContent>
+            
+          </Select>
         </label>
 
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
 
 
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Aceptar</Button>
+        <Button disabled={isSubmitting} className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Aceptar</Button>
       </form>
      
         <Button onClick={onClose}>Cerrar</Button>

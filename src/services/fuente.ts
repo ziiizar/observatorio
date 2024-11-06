@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import { routes } from "@/constants/routes";
 import { axiosInstance } from "@/lib/utils";
@@ -24,7 +24,7 @@ export const insertFuente = async (data: TSInsertFuenteSchema) => {
   console.log(data);
 
   try {
-    const resp = await axiosInstance.post("insert-fuente", {
+    await axiosInstance.post("insert-fuente", {
       editores,
       frequency,
       id_eje,
@@ -35,7 +35,7 @@ export const insertFuente = async (data: TSInsertFuenteSchema) => {
       url,
     });
 
-    revalidatePath(routes.adminFuentes)
+    revalidatePath(routes.adminFuentes);
     return { success: "Fuente insertada" };
   } catch (error) {
     return { error: "Error" };
@@ -58,7 +58,7 @@ export const updateFuente = async (data: TSUpdateFuenteSchema) => {
   console.log(data);
 
   try {
-    const resp = await axiosInstance.put("edit-fuente", {
+    await axiosInstance.put("edit-fuente", {
       id,
       editores,
       frequency,
@@ -70,7 +70,7 @@ export const updateFuente = async (data: TSUpdateFuenteSchema) => {
       url,
     });
 
-    revalidatePath(routes.adminFuentes)
+    revalidatePath(routes.adminFuentes);
 
     return { success: "Fuente Editada" };
   } catch (error) {
@@ -80,15 +80,13 @@ export const updateFuente = async (data: TSUpdateFuenteSchema) => {
 export const deleteFuente = async (data: TSDeleteFuenteSchema) => {
   const { id } = data;
 
-  console.log(data)
-  console.log(id)
+  console.log(data);
+  console.log(id);
 
   try {
-    const resp = await axiosInstance.delete(`delete-fuente/${id}`
-      
-    );
+    await axiosInstance.delete(`delete-fuente/${id}`);
 
-    revalidatePath(routes.adminFuentes)
+    revalidatePath(routes.adminFuentes);
 
     return { success: "Fuente Eliminada" };
   } catch (error) {
@@ -98,20 +96,22 @@ export const deleteFuente = async (data: TSDeleteFuenteSchema) => {
 
 export const startMonitoring = async (fuenteId: number) => {
   try {
-    console.log("Iniciado")
+    console.log("Iniciado");
+    console.log(fuenteId);
     // const resp = await axiosInstance.get(`start-monitoring/${fuenteId}`)
-    return {succes: "Fuente monitoreada"}
+    return { succes: "Fuente monitoreada" };
   } catch (error) {
-    return {error: "Error"}
+    return { error: "Error" };
   }
-}
+};
 export const stopMonitoring = async (fuenteId: number) => {
   try {
-    console.log("Detenido")
+    console.log("Detenido");
+    console.log(fuenteId);
 
     // const resp = await axiosInstance.get(`stop-monitoring/${fuenteId}`)
-    return {succes: "Monitoreo detenido"}
+    return { succes: "Monitoreo detenido" };
   } catch (error) {
-    return {error: "Error"}
+    return { error: "Error" };
   }
-}
+};

@@ -1,10 +1,9 @@
-import { clsx } from "clsx"
+import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import axios from "axios";
-import jsPDF from "jspdf";
 import { Registros } from "@/types/registro";
 
-export function cn(...inputs) {
+export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
@@ -49,45 +48,6 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     '...',
     totalPages,
   ];
-};
-
-
-// axiosInstance.interceptors.request.use(config =>{
-//     const token = useLoged.getState().token
-//     config.headers = {
-//         Authorization: `Bearer ${token}`
-//     }
-//     return config
-// })
-
-
-
-export const exportTableToPDF = () => {
-  const doc = new jsPDF();
-
-  // Selecciona la tabla del DOM
-  const table = document.querySelector("table");
-  
-  if (!table) return; // Asegurarse que la tabla existe
-
-  // Obtener todas las filas de la tabla (head y body)
-  const rows = table.querySelectorAll("tr");
-
-  let startY = 10; // Posición inicial en el PDF
-  
-  // Recorre cada fila de la tabla
-  rows.forEach((row, rowIndex) => {
-    const cells = row.querySelectorAll("th, td"); // Selecciona celdas
-
-    cells.forEach((cell, cellIndex) => {
-      doc.text(cell.innerText, 10 + (cellIndex * 40), startY); // Ajusta las posiciones X, Y
-    });
-
-    startY += 10; // Incrementa Y para la siguiente fila
-  });
-
-  // Guardar el PDF
-  doc.save("table_data.pdf");
 };
 
 

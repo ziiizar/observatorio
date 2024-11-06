@@ -7,7 +7,7 @@ export const InsertFuenteSchema = z.object({
   frequency: z.coerce.number().min(1, { message: "La frecuencia debe ser al menos 1." }),
   url: z.string().url({ message: "Debe ser una URL válida." }),
   materia: z.string().min(1, { message: "La materia no puede estar vacía." }),
-  id_eje: z.string().min(1, { message: "Debe seleccionar un eje temático." }),
+  id_eje: z.coerce.number().min(1, { message: "Debe seleccionar un eje temático." }),
   is_monitoring: z.boolean(),
 });
 
@@ -21,7 +21,7 @@ export const UpdateFuenteSchema = z.object({
   frequency: z.coerce.number().min(1, { message: "La frecuencia debe ser al menos 1." }),
   url: z.string().url({ message: "Debe ser una URL válida." }),
   materia: z.string().min(1, { message: "La materia no puede estar vacía." }),
-  id_eje: z.string().min(1, { message: "Debe seleccionar un eje temático." }),
+  id_eje: z.coerce.number().min(1, { message: "Debe seleccionar un eje temático." }),
   is_monitoring: z.boolean(),
 });
 

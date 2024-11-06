@@ -1,4 +1,4 @@
-export function Dashboard({color}) {
+export function Dashboard({color}:{color:string}) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@ export function Dashboard({color}) {
   }
   
 
-  export function Users({color}) {
+  export function Users({color}:{color:string}) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export function Dashboard({color}) {
   }
 
 
-  export function Fuentes({color}) {
+  export function Fuentes({color}:{color:string}) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ export function Dashboard({color}) {
   }
 
 
-  export function Estadisticas({color}) {
+  export function Estadisticas({color}:{color:string}) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ export function Dashboard({color}) {
   }
 
 
-  export function Boletines({color}) {
+  export function Boletines({color}:{color:string}) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ export function Dashboard({color}) {
   }
 
 
-  export function Settings({color}) {
+  export function Settings({color}:{color:string}) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

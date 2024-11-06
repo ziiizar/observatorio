@@ -7,24 +7,33 @@ import { cn } from "@/lib/utils";
 import { outfit } from "@/styles/fonts";
 import HeaderLinks from "./HeaderLinks";
 
-
-const Header = async ({ landing }) => {
-  
+const Header = async ({ landing }:{landing:boolean}) => {
   const user = await getAuth();
   return (
-    <header className={cn("flex   px-6 h-[15dvh] absolute top-0 left-0 w-full items-center ",landing ? ('gap-12') :('justify-between'), outfit.className)}>
+    <header
+      className={cn(
+        "flex   px-6 h-[15dvh] absolute top-0 left-0 w-full items-center ",
+        landing ? "gap-12" : "justify-between",
+        outfit.className
+      )}
+    >
       <div className="flex gap-2 place-content-center items-center">
-        <Link href={routes.home} className=" flex place-content-center items-center">
-          <img src={Logo.src} alt="Logo" className="h-8 w-auto mr-3" />
+        <Link
+          href={routes.home}
+          className=" flex place-content-center items-center"
+        >
+          <picture>
+            <img src={Logo.src} alt="Logo" className="h-8 w-auto mr-3" />
+          </picture>
         </Link>
         <h3 className=" font-bold text-2xl">
           MIN<span className="text-burgundy-800">EM.</span>
         </h3>
-        </div>
-        <ul className="flex gap-6 ">
-          <HeaderLinks></HeaderLinks>
-        </ul>
-      
+      </div>
+      <ul className="flex gap-6 ">
+        <HeaderLinks></HeaderLinks>
+      </ul>
+
       {!landing ? <AuthBox user={user}></AuthBox> : null}
     </header>
   );

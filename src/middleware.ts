@@ -1,8 +1,9 @@
 import { getAuth } from "@/services/getAuth";
 import { AUTH_ROUTES, PUBLIC_ROUTES, routes, ADMIN_ROUTES } from "./constants/routes";
 import { AuthUser } from "./types/user";
+import { NextRequest } from "next/server";
 
-export default async function auth(req) {
+export default async function auth(req:NextRequest) {
   const { nextUrl } = req;
   
   const user:AuthUser = await getAuth();

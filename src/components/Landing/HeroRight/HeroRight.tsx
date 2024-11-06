@@ -6,7 +6,6 @@ import { getAuth } from "@/services/getAuth";
 import { Rectangulo } from "@/Icons/Rectangulo";
 import WhiteCircle from "@/Icons/WhiteCircle";
 import MovingElipses from "./MovingElipses";
-import { toast } from "sonner";
 
 const HeroRight = async () => {
   const user = await getAuth()
@@ -27,11 +26,11 @@ const HeroRight = async () => {
               <p className="text-center text-[clamp(0.75rem,2vw,1rem)]">Observatorios Activos</p>
               <div className="w-full flex gap-2 sm:gap-4 place-content-center items-center">
                 <div className="flex relative">
-                  <WhiteCircle />
+                  <WhiteCircle className=""/>
                   <WhiteCircle className="-ml-6 sm:-ml-8" />
                   <WhiteCircle className="-ml-6 sm:-ml-8" />
                 </div>
-                <Button className="text-black px-2 sm:px-4 ">Únete</Button>
+                <Button className="text-black px-2 sm:px-4 hover:bg-burgundy-900">Únete</Button>
               </div>
             </article>
             <article className="bg-black rounded-xl size-16 sm:size-20 self-center flex place-content-center items-center z-10 shadow-shadowBlack">

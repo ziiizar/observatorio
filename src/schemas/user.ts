@@ -80,7 +80,7 @@ export const EditUserSchema = z.object({
 export type TSEditUserSchema = z.infer<typeof EditUserSchema>;
 
 export const DeleteUserSchema = z.object({
-  id: z.string(),
+  id: z.number(),
 });
 
 export type TSDeleteUserSchema = z.infer<typeof DeleteUserSchema>;

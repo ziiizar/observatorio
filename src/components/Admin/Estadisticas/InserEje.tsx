@@ -3,13 +3,13 @@
 import { InsertEjeSchema, TSInsertEjeSchema } from "@/schemas/ejes";
 import { insertEje } from "@/services/eje";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Button from "@/components/ui/Button";
 import { routes } from "@/constants/routes";
 import { toast } from "sonner";
-import { Label } from "@/components/ui/Label";
-import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/Label";
+import { Input } from "@/components/ui/Input";
 
 const InsertEje = () => {
 
@@ -73,7 +73,7 @@ const InsertEje = () => {
         {firstError && <h4 className="text-burgundy-900">{firstError}</h4>}
 
 
-        <Button className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
+        <Button disabled={isSubmitting} className="bg-burgundy-900 text-white shadow-shadowRed" type="submit">Registrar</Button>
       </form>
     </div>
   );

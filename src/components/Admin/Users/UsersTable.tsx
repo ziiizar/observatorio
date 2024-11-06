@@ -8,10 +8,6 @@ import TableHeadRow from "../../Table/TableHeadRow";
 import { User } from "@/types/user";
 import TableCell from "@/components/Table/TableCell";
 import Button from "@/components/ui/Button";
-import Link from "next/link";
-import { routes } from "@/constants/routes";
-import ExportButton from "@/components/ExportButton";
-import jsPDF from "jspdf";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
 import EditUserForm from "@/components/Admin/Users/EditUserForm";
@@ -20,8 +16,7 @@ import { toast } from "sonner";
 import { DeleteIcon, EditIcon } from "@/Icons/Table";
 
 const UsersTable = ({
-  currentPage,
-  limit,
+  
   users,
 }: {
   currentPage: number;
@@ -74,12 +69,12 @@ const UsersTable = ({
         <Table className="">
           <TableHead className="">
             <TableRow>
-              <TableHeadRow className="rounded-tl-xl ">Acciones</TableHeadRow>
-              <TableHeadRow className="">Nombre</TableHeadRow>
-              <TableHeadRow>Apellidos</TableHeadRow>
-              <TableHeadRow>Correo</TableHeadRow>
-              <TableHeadRow>Organismo</TableHeadRow>
-              <TableHeadRow className="rounded-tr-xl">Rol</TableHeadRow>
+              <TableHeadRow columnIndex={0} className="rounded-tl-xl ">Acciones</TableHeadRow>
+              <TableHeadRow columnIndex={1} className="">Nombre</TableHeadRow>
+              <TableHeadRow columnIndex={2}>Apellidos</TableHeadRow>
+              <TableHeadRow columnIndex={3}>Correo</TableHeadRow>
+              <TableHeadRow columnIndex={4}>Organismo</TableHeadRow>
+              <TableHeadRow columnIndex={5} className="rounded-tr-xl">Rol</TableHeadRow>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -88,7 +83,7 @@ const UsersTable = ({
                 className=""
                 key={user.id}
               >
-                <TableCell className="">
+                <TableCell columnIndex={0} className="">
                   {
                     <div className="flex gap-2">
                       <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"  onClick={() => handleDeleteClick(user)}>
@@ -100,19 +95,19 @@ const UsersTable = ({
                     </div>
                   }
                 </TableCell>
-                <TableCell className="border-l-2 border-dusty-gray-300">
+                <TableCell columnIndex={1} className="border-l-2 border-dusty-gray-300">
                   {user.first_name}
                 </TableCell>
-                <TableCell className="border-l-2 border-dusty-gray-300">
+                <TableCell columnIndex={2} className="border-l-2 border-dusty-gray-300">
                   {user.last_name}
                 </TableCell>
-                <TableCell className="border-l-2 border-dusty-gray-300">
+                <TableCell columnIndex={3} className="border-l-2 border-dusty-gray-300">
                   {user.email}
                 </TableCell>
-                <TableCell className="border-l-2 border-dusty-gray-300">
+                <TableCell columnIndex={4} className="border-l-2 border-dusty-gray-300">
                   {user.userprofile?.organization}
                 </TableCell>
-                <TableCell className="border-l-2 border-dusty-gray-300">
+                <TableCell columnIndex={5} className="border-l-2 border-dusty-gray-300">
                   {user.userprofile?.role}
                 </TableCell>
               </TableRow>
@@ -131,7 +126,7 @@ const UsersTable = ({
       <Modal onClose={closeModals}>
         <div className="p-6 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Eliminar Usuario</h2>
-          <p>¿Desea eliminar al usuario "{selectedUser.username}"?</p>
+          <p>¿Desea eliminar al usuario {selectedUser.username}?</p>
           <div className="flex justify-end gap-4 mt-6">
             <Button className="bg-red-600 text-black" onClick={handleDeleteUser}>
               Aceptar

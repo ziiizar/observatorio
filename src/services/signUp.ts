@@ -20,7 +20,8 @@ export const signup = async (data: TSSignUpSchema) => {
     return { success: "Cuenta creada con exito" };
     // redirect("/");
   } catch (error) {
-    return { error: "Signup failed:"+ (error.response?.data?.detail || error.message) };
+    const err = error as { response?: { data?: { detail?: string } } }; // Casting de error
+    return { error: "Signup failed:" + (err.response?.data?.detail || (error as Error).message) };
   }
   redirect(routes.adminUsers)
 };

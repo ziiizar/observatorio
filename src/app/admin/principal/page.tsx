@@ -1,10 +1,10 @@
 import AccountCard from "@/components/Admin/Principal/AccountCard";
 import { TotalFuentes, TotalUsers } from "@/Icons/Admin";
-import { getAuth } from "@/services/getAuth";
-import { AuthUser } from "@/types/user";
+// import { getAuth } from "@/services/getAuth";
+// import { AuthUser } from "@/types/user";
 
 const page = async () => {
-  const user: AuthUser = await getAuth();
+  // const user: AuthUser = await getAuth();
   return (
     <main className="[grid-area:main] w-full h-full  flex  gap-4  pt-4 px-4">
       <div className="flex flex-col gap-4 h-full w-1/2">

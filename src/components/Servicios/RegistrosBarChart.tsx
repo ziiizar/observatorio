@@ -1,23 +1,29 @@
 "use client"
 
+import { formattedRegistros } from '@/types/registro';
 import { ResponsiveBar } from '@nivo/bar'
 
-interface RegistrationData {
-  year: number
-  cant: number
-}
+// Ajusta el tipo de datos para cumplir con los requisitos de `ResponsiveBar`
 
-interface BarChartProps {
-  data: RegistrationData[]
-}
 
-export default function RegistrosBarChart({ data }: BarChartProps) {
+export default function RegistrosBarChart({ data, selectedValue = 'language'}: {data: formattedRegistros[], selectedValue: string}) {
+  // Transformar `year` en string si es necesario
+  const formattedData = Object.values(
+    data.reduce((acc, item) => {
+      const key = item[selectedValue]; // Obtener el valor de la columna dinámica
+      if (!acc[key]) {
+        acc[key] = { [selectedValue]: key, cant: 0 };
+      }
+      acc[key].cant += 1;
+      return acc;
+    }, {} as Record<string, { [key: string]: string; cant: number }>)
+  );
   return (
     <div className="h-[400px] w-full">
       <ResponsiveBar
-        data={data}
+        data={formattedData}
         keys={['cant']}
-        indexBy="year"
+        indexBy={selectedValue}
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}
@@ -97,8 +103,8 @@ export default function RegistrosBarChart({ data }: BarChartProps) {
         ]}
         role="application"
         ariaLabel="Registration data bar chart"
-        barAriaLabel={e => `${e.id}: ${e.formattedValue} registrations in year: ${e.indexValue}`}
+        barAriaLabel={(e) => `${e.id}: ${e.formattedValue} registrations in year: ${e.indexValue}`}
       />
     </div>
-  )
+  );
 }

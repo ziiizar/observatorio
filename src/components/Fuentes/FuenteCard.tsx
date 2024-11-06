@@ -6,10 +6,10 @@ import { Fuente } from '@/types/fuente';
 const FuenteCard = ({fuente}: {fuente:Fuente}) => {
 
     
-    const handelStart = (fuenteId) => {
+    const handelStart = (fuenteId:number ) => {
         startMonitoring(fuenteId)
       }
-      const handelStop = (fuenteId) => {
+      const handelStop = (fuenteId:number ) => {
         stopMonitoring(fuenteId)
       }
 
@@ -17,7 +17,7 @@ const FuenteCard = ({fuente}: {fuente:Fuente}) => {
     <article key={fuente.id} className="flex gap-4">
             <div>
               <h3>{fuente.organization}</h3>
-              <h4>{fuente.matter}</h4>
+              <h4>{fuente.materia}</h4>
             </div>
             <button onClick={()=>{handelStart(fuente.id)}}>Start</button>
             <button onClick={()=>{handelStop(fuente.id)}}>Stop</button>

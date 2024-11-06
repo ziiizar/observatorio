@@ -61,21 +61,21 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) =>
       <Table className="">
         <TableHead className="">
           <TableRow>
-            <TableHeadRow className="rounded-tl-xl">Acciones</TableHeadRow>
-            <TableHeadRow className="">Titulo</TableHeadRow>
-            <TableHeadRow>URL</TableHeadRow>
-            <TableHeadRow>Organización</TableHeadRow>
-            <TableHeadRow>Frecuencia</TableHeadRow>
-            <TableHeadRow>Monitoreado</TableHeadRow>
-            <TableHeadRow>Editores</TableHeadRow>
-            <TableHeadRow>Materia</TableHeadRow>
-            <TableHeadRow className="rounded-tr-xl">Eje Temático</TableHeadRow>
+            <TableHeadRow columnIndex={0} className="rounded-tl-xl">Acciones</TableHeadRow>
+            <TableHeadRow columnIndex={1} className="">Titulo</TableHeadRow>
+            <TableHeadRow columnIndex={2}>URL</TableHeadRow>
+            <TableHeadRow columnIndex={3}>Organización</TableHeadRow>
+            <TableHeadRow columnIndex={4}>Frecuencia</TableHeadRow>
+            <TableHeadRow columnIndex={5}>Monitoreado</TableHeadRow>
+            <TableHeadRow columnIndex={6}>Editores</TableHeadRow>
+            <TableHeadRow columnIndex={7}>Materia</TableHeadRow>
+            <TableHeadRow columnIndex={8} className="rounded-tr-xl">Eje Temático</TableHeadRow>
           </TableRow>
         </TableHead>
         <TableBody>
           {fuentes.map((fuente) => (
             <TableRow className="" key={fuente.id}>
-              <TableCell className="">
+              <TableCell columnIndex={0} className="">
                 {user?.role === 'observador' ? (<Button
                     className=" w-16 h-8 rounded-full bg-burgundy-900 text-white"
                     onClick={() => startMonitoring(fuente.id)} // Abrir el modal de edición con la fuente seleccionada
@@ -96,16 +96,16 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) =>
                   </Button>
                 </div>)}
               </TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.title}</TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.url}</TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.organization}</TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.frequency}</TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">
+              <TableCell columnIndex={1} className="border-l-2 border-dusty-gray-300">{fuente.title}</TableCell>
+              <TableCell columnIndex={2} className="border-l-2 border-dusty-gray-300">{fuente.url}</TableCell>
+              <TableCell columnIndex={3} className="border-l-2 border-dusty-gray-300">{fuente.organization}</TableCell>
+              <TableCell columnIndex={4} className="border-l-2 border-dusty-gray-300">{fuente.frequency}</TableCell>
+              <TableCell columnIndex={5} className="border-l-2 border-dusty-gray-300">
                 {fuente.is_monitoring ? "Sí" : "No"}
               </TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.editores}</TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.materia}</TableCell>
-              <TableCell className="border-l-2 border-dusty-gray-300">{fuente.id_eje}</TableCell>
+              <TableCell columnIndex={6} className="border-l-2 border-dusty-gray-300">{fuente.editores}</TableCell>
+              <TableCell columnIndex={7} className="border-l-2 border-dusty-gray-300">{fuente.materia}</TableCell>
+              <TableCell columnIndex={8} className="border-l-2 border-dusty-gray-300">{fuente.id_eje}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -123,7 +123,7 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[], user:AuthUser }) =>
         <Modal onClose={closeModals}>
           <div className="p-6 bg-white rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Eliminar Fuente</h2>
-            <p>¿Desea eliminar la fuente "{selectedFuente.title}"?</p>
+            <p>¿Desea eliminar la fuente {selectedFuente.title}?</p>
             <div className="flex justify-end gap-4 mt-6">
               <Button className="bg-red-600 text-black" onClick={handleDeleteFuente}>
                 Aceptar

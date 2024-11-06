@@ -34,7 +34,7 @@ export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement>
   isHeader?: boolean;
 }
 
-const TableRow: React.FC<TableRowProps> = ({ children, className, isHeader = false, ...props }) => {
+const TableRow: React.FC<TableRowProps> = ({ children, className, ...props }) => {
   return (
     <tr className={cn("truncate max-w-20 text-sm border-b-2  border-dusty-gray-300", className)} {...props}>
       {React.Children.map(children, (child, index) => {

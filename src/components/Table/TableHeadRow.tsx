@@ -20,7 +20,6 @@
 
 
 
-
 'use client'
 
 import { cn } from "@/lib/utils";
@@ -29,30 +28,23 @@ import { outfit } from "@/styles/fonts";
 
 export interface TableHeadRowProps extends React.ThHTMLAttributes<HTMLTableCellElement> {
   children: React.ReactNode;
-  columnIndex: number; // Índice de la columna
+  columnIndex: number;
 }
 
 const TableHeadRow: React.FC<TableHeadRowProps> = ({ children, className, columnIndex, ...props }) => {
-  const { expandedColumns, toggleColumnExpansion } = useTableContext();
-
-  // Verificar si la columna está expandida
-  const isExpanded = expandedColumns.has(columnIndex);
+  const { toggleColumnExpansion } = useTableContext();
 
   const handleHeaderClick = () => {
-    toggleColumnExpansion(columnIndex); // Alternar expansión de la columna
+    toggleColumnExpansion(columnIndex);
   };
 
   return (
     <th
       className={cn("font-medium text-muted-foreground px-4 py-2 cursor-pointer", outfit.className, className)}
-      onDoubleClick={handleHeaderClick} // Añadimos el evento de clic
+      onDoubleClick={handleHeaderClick}
       {...props}
     >
       {children}
-      {/* Mostrar un indicador visual si está expandido o no */}
-      {/* <span className="ml-2 text-blue-600">
-        {isExpanded ? "Ver menos" : "Ver mas"}
-      </span> */}
     </th>
   );
 };

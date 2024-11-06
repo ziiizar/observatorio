@@ -8,7 +8,7 @@ import { outfit, zodiak } from '@/styles/fonts'
 export default function NotFound() {
   return (
     <>
-    <Header ></Header>
+    <Header landing={false}></Header>
     <main className={cn("min-h-screen flex  items-center justify-between px-40", outfit.className)}>
       
         <Image
