@@ -193,31 +193,31 @@ export default function DynamicPatentPieChart({ data, selectedField1 }: DynamicP
       arcLinkLabelsColor={{ from: 'color' }}
       arcLabelsSkipAngle={10}
       arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
-      legends={[
-        {
-          anchor: 'bottom',
-          direction: 'row',
-          justify: false,
-          translateX: 0,
-          translateY: 56,
-          itemsSpacing: 0,
-          itemWidth: 100,
-          itemHeight: 18,
-          itemTextColor: '#999',
-          itemDirection: 'left-to-right',
-          itemOpacity: 1,
-          symbolSize: 18,
-          symbolShape: 'circle',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemTextColor: '#000'
-              }
-            }
-          ]
-        }
-      ]}
+      // legends={[
+      //   {
+      //     anchor: 'bottom',
+      //     direction: 'row',
+      //     justify: false,
+      //     translateX: 0,
+      //     translateY: 56,
+      //     itemsSpacing: 0,
+      //     itemWidth: 100,
+      //     itemHeight: 18,
+      //     itemTextColor: '#999',
+      //     itemDirection: 'left-to-right',
+      //     itemOpacity: 1,
+      //     symbolSize: 18,
+      //     symbolShape: 'circle',
+      //     effects: [
+      //       {
+      //         on: 'hover',
+      //         style: {
+      //           itemTextColor: '#000'
+      //         }
+      //       }
+      //     ]
+      //   }
+      // ]}
     />
   );
 }
