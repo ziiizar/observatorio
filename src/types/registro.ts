@@ -11,18 +11,18 @@ export type Registros = {
   }
   
   export type  formattedRegistros = {
-    title: any;
-    creators: any;
-    subject: any;
-    description: any;
-    publisher: any;
-    date: any;
-    type: any;
-    format: any;
-    identifier: any;
-    language: any;
-    rights: any;
-    source: any;
-    relation: any;
+    title: string;
+    creators: string;
+    subject: string;
+    description: string;
+    publisher: string;
+    date: string;
+    type: string;
+    format: string;
+    identifier: string;
+    language: string;
+    rights: string;
+    source: string;
+    relation: string;
     id: number;
 }

@@ -3,21 +3,23 @@
 import { formattedRegistros } from '@/types/registro';
 import { ResponsiveBar } from '@nivo/bar'
 
-// Ajusta el tipo de datos para cumplir con los requisitos de `ResponsiveBar`
+// Define `selectedValue` como una clave de `formattedRegistros`
+export default function RegistrosBarChart({ data, selectedValue = 'language' }: { data: (formattedRegistros | null)[], selectedValue: keyof formattedRegistros }) {
 
+  // Filtra los valores nulos en `data`
+  const filteredData = data.filter((item): item is formattedRegistros => item !== null);
 
-export default function RegistrosBarChart({ data, selectedValue = 'language'}: {data: formattedRegistros[], selectedValue: string}) {
-  // Transformar `year` en string si es necesario
   const formattedData = Object.values(
-    data.reduce((acc, item) => {
+    filteredData.reduce((acc, item) => {
       const key = item[selectedValue]; // Obtener el valor de la columna dinámica
       if (!acc[key]) {
         acc[key] = { [selectedValue]: key, cant: 0 };
       }
       acc[key].cant += 1;
       return acc;
-    }, {} as Record<string, { [key: string]: string; cant: number }>)
+    }, {} as Record<string, { [key: string]: string | number; cant: number }>)
   );
+
   return (
     <div className="h-[400px] w-full">
       <ResponsiveBar
