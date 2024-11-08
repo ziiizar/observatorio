@@ -1,0 +1,24 @@
+User-agent: *
+# Restringe el acceso a rutas de administración y autenticación
+Disallow: /app/(Auth)/
+Disallow: /app/admin/
+Disallow: /components/auth/
+Disallow: /components/Admin/
+Disallow: /__tests__/
+Disallow: /constants/
+Disallow: /mocks/
+
+# Permite el acceso a las rutas públicas
+Allow: /app/boletines/
+Allow: /app/geoportal/
+Allow: /app/servicios/
+Allow: /app/sobre-nosotros/
+Allow: /components/AboutUs/
+Allow: /components/Fuentes/
+Allow: /components/Landing/
+Allow: /components/Servicios/
+Allow: /components/Table/
+Allow: /components/ui/
+
+# Permitir acceso al resto del sitio
+Allow: /

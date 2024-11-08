@@ -9,20 +9,16 @@ const links = [
     name: "Servicios",
     href: routes.services,
     // coloredIcon: DashboardColor,
-    
   },
   {
     name: "Boletines",
     href: routes.boletines,
-    
   },
   {
     name: "Sobre el observatorio",
     href: routes.aboutUs,
-
   },
 
-  
   // {
   //   name: "Affiliate Program",
   //   href: "/Profile/Affilliate",
@@ -40,18 +36,23 @@ const HeaderLinks = () => {
       {links.map((link, index) => {
         // const LinkIcon = link.icon;
         // const ColoredIcon = link.coloredIcon;
-        return(
-        <Link
-          key={index}
-          href={link.href}
-          className={cn(' hover:text-burgundy-900 hover:underline transition-all ', (link.href === pathname || pathname.startsWith(link.href)) && ' text-burgundy-900 underline' )}
-        >
-            {/* {link.href === pathname || pathname.startsWith(link.href) ? <LinkIcon color={'black'}></LinkIcon>: 
+        return (
+          <li key={index}>
+            <Link
+              href={link.href}
+              className={cn(
+                " hover:text-burgundy-900 hover:underline transition-all ",
+                (link.href === pathname || pathname.startsWith(link.href)) &&
+                  " text-burgundy-900 underline"
+              )}
+            >
+              {/* {link.href === pathname || pathname.startsWith(link.href) ? <LinkIcon color={'black'}></LinkIcon>: 
             <LinkIcon color={'white'}></LinkIcon>} */}
-          
-          <span>{link.name}</span>
-        </Link>
-        )
+
+              <span>{link.name}</span>
+            </Link>
+          </li>
+        );
       })}
     </>
   );

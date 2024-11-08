@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { outfit, zodiak } from '@/styles/fonts'
+import Button from '@/components/ui/Button'
 export default function NotFound() {
   return (
     <>
@@ -21,11 +22,11 @@ export default function NotFound() {
         <div className='w-52 text-left'><h4 className='text-3xl'>Ups!</h4>
           <h4 className="mt-8 text-8xl font-semibold text-gray-800"> 404</h4>
           <p className={cn("mt-4 text-xl text-gray-600", zodiak.className)}>La página que buscas no existe o está en mantenimiento</p>
-          <Link href={routes.home} >
-            <button className="mt-8 px-6 py-3 bg-burgundy-900 text-white font-semibold rounded-full hover:bg-burgundy-800 transition duration-300">
-              Ir a Página Principal
-            </button>
-          </Link>
+         
+            <Button className="mt-8 px-6 py-3 bg-burgundy-900 text-white font-semibold rounded-full hover:bg-burgundy-800 transition duration-300">
+            <Link href={routes.home} > Ir a Página Principal</Link>
+            </Button>
+          
         </div>
       
     </main>

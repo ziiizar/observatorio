@@ -4,6 +4,7 @@ import LoginForm from "@/components/auth/LoginForm";
 import { routes } from "@/constants/routes";
 import Link from "next/link";
 import Logo from "@/public/Logo.png";
+import Image from "next/image";
 
 const page = () => {
   return (
@@ -14,9 +15,7 @@ const page = () => {
             href={routes.home}
             className=" flex place-content-center items-center "
           >
-            <picture className="h-12 w-auto ">
-              <img src={Logo.src} alt="Logo" className="h-12 w-auto mr-3" />
-            </picture>
+              <Image src={Logo} alt="Logo" className="h-12 w-auto mr-3" />
           </Link>
           <h3 className=" font-bold text-2xl text-burgundy-800">MINEM.</h3>
         </div>

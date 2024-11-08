@@ -6,6 +6,7 @@ import { routes } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 import { outfit } from "@/styles/fonts";
 import HeaderLinks from "./HeaderLinks";
+import Image from "next/image";
 
 const Header = async ({ landing }:{landing:boolean}) => {
   const user = await getAuth();
@@ -22,9 +23,7 @@ const Header = async ({ landing }:{landing:boolean}) => {
           href={routes.home}
           className=" flex place-content-center items-center"
         >
-          <picture>
-            <img src={Logo.src} alt="Logo" className="h-8 w-auto mr-3" />
-          </picture>
+            <Image src={Logo} alt="Logo" className="h-8 w-auto mr-3" />
         </Link>
         <h3 className=" font-bold text-2xl">
           MIN<span className="text-burgundy-800">EM.</span>

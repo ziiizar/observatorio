@@ -11,7 +11,6 @@ const Section3 = () => {
         <Image 
           alt="Hombre" 
           src={Hombre} 
-          className="w-auto h-full object-contain"
           priority
         />
       </div>

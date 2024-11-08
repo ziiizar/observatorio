@@ -33,7 +33,7 @@ export default function ProfileHeaderButton({ user }: { user: AuthUser }) {
         </div>
         <svg
           className={`h-3 w-3 sm:h-4 sm:w-4 text-gray-700 transition-transform duration-200 ${
-            isOpen ? 'transform rotate-180' : ''
+            isOpen ? 'transform rotate-180 will-change-auto' : ''
           }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
