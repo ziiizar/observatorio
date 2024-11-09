@@ -10,6 +10,7 @@ import Button from "../ui/Button";
 import { routes } from "@/constants/routes";
 import { Email, Facebook, Instagram, Phone, Twitter } from "@/Icons/Social";
 import { Input } from "../ui/Input";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -27,10 +28,15 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: TSLoginSchema) => {
-    const result = await login(data);
-    if (result.success) {
-      router.push(routes.home);
-    }
+    const resp = await login(data);
+    if(resp.success){
+      toast.success(resp.success)
+      router.push(routes.home)
+      
+     }
+     if(resp.error){
+      toast.error(resp.error)
+     }
   };
 
   return (
