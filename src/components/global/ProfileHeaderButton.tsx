@@ -4,10 +4,28 @@ import { useState, useRef, useEffect } from 'react'
 import { AuthUser } from '@/types/user'
 import Button from '../ui/Button'
 import { logout } from '@/services/logout'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
+import { routes } from '@/constants/routes'
 
 export default function ProfileHeaderButton({ user }: { user: AuthUser }) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const router = useRouter();
+
+
+  const onClick = async () => {
+    const resp = await logout();
+    if(resp.success){
+      toast.success(resp.success)
+      router.push(routes.home)
+      
+     }
+     if(resp.error){
+      toast.error(resp.error)
+     }
+  };
+
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -54,7 +72,7 @@ export default function ProfileHeaderButton({ user }: { user: AuthUser }) {
         `}
       >
         <Button
-          onClick={logout}
+          onClick={onClick}
           className="block w-full border border-burgundy-900 px-2 sm:px-4 py-2 text-[clamp(0.625rem,1.5vw,0.75rem)] hover:bg-burgundy-800 focus:outline-none text-burgundy-900 hover:text-white transition-all duration-200 ease-in-out hover:shadow-shadowRed"
         >
           Cerrar sesión
