@@ -11,7 +11,7 @@ const page = () => {
       <Header landing={false}></Header>
       <main
         className={cn(
-          "bg-white flex flex-col min-h-screen gap-6",
+          "bg-white flex flex-col min-h-screen gap-6 mb-10",
           outfit.className
         )}
       >

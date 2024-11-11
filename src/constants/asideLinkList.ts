@@ -77,12 +77,12 @@ export const ServicesLinks: Links[] = [
       href: routes.adminEstadisticas,
       icon: Estadisticas,
     },
-    {
-      name: "Boletines",
-      href: routes.adminBoletines,
-      icon: Boletines,
+    // {
+    //   name: "Boletines",
+    //   href: routes.adminBoletines,
+    //   icon: Boletines,
   
-    },
+    // },
     // {
     //   name: "Affiliate Program",
     //   href: "/Profile/Affilliate",

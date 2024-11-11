@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import Button from "../ui/Button";
+import { Ascendent, Descendent } from "@/Icons/Table";
 
 interface OrderByProps {
   columns: { [key: string]: string }; // Objeto que representa los campos de la tabla
@@ -61,9 +62,9 @@ const OrderBy: React.FC<OrderByProps> = ({ columns }) => {
       </Select>
       <Button
         onClick={handleOrderChange}
-        className="bg-burgundy-900 text-white px-3 py-2 rounded"
+        className="bg-transparent text-white p-1 rounded w-16"
       >
-        {sortOrder === "asc" ? "Ascendente" : "Descendente"}
+        {sortOrder === "asc" ? <Ascendent /> : <Descendent />}
       </Button>
     </div>
   );

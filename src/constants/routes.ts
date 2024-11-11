@@ -17,7 +17,7 @@ interface routes {
   crearUser: string;
   adminEstadisticas: string;
   crearEje: string
-  adminBoletines: string;
+  // adminBoletines: string;
   dspace: string
   vivo: string
 }
@@ -41,7 +41,7 @@ export const routes: routes = {
   crearUser: "/admin/usuarios/crear",
   adminEstadisticas: "/admin/estadisticas",
   crearEje: "/admin/estadisticas/crear-eje",
-  adminBoletines: "/admin/boletines",
+  // adminBoletines: "/admin/boletines",
   dspace: 'https://dspace.uclv.edu.cu/',
   vivo: 'http://vivo.uclv.edu.cu/',
 };
@@ -62,4 +62,20 @@ const ADMIN_ROUTES = [
   routes.crearFuente,
 ];
 
-export { AUTH_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES, ADMIN_ROUTES };
+const DIRECTIVO_ROUTES = [
+  routes.admin,
+  routes.adminFuentes,
+  routes.crearUser,
+  routes.adminUsers,
+  routes.crearFuente,
+];
+
+const OBSERVADOR_ROUTES = [
+  routes.admin,
+  routes.adminFuentes,
+  routes.crearUser,
+  routes.adminUsers,
+  routes.crearFuente,
+];
+
+export { AUTH_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES, ADMIN_ROUTES, DIRECTIVO_ROUTES, OBSERVADOR_ROUTES };

@@ -98,7 +98,7 @@ export const startMonitoring = async (fuenteId: number) => {
   try {
     console.log("Iniciado");
     console.log(fuenteId);
-    // const resp = await axiosInstance.get(`start-monitoring/${fuenteId}`)
+    const resp = await axiosInstance.get(`start-monitoring/${fuenteId}`)
     return { succes: "Fuente monitoreada" };
   } catch (error) {
     return { error: "Error" };
@@ -109,7 +109,7 @@ export const stopMonitoring = async (fuenteId: number) => {
     console.log("Detenido");
     console.log(fuenteId);
 
-    // const resp = await axiosInstance.get(`stop-monitoring/${fuenteId}`)
+    const resp = await axiosInstance.get(`stop-monitoring/${fuenteId}`)
     return { succes: "Monitoreo detenido" };
   } catch (error) {
     return { error: "Error" };
