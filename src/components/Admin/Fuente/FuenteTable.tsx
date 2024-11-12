@@ -35,6 +35,7 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[]; user: AuthUser }) =
 
   const handleMonitoringClick = (fuente: Fuente) => {
     setSelectedFuente(fuente)
+    startMonitoring(fuente.id)
     setIsMonitoringModalOpen(true)
   }
 
@@ -60,7 +61,7 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[]; user: AuthUser }) =
 
   return (
     <>
-      <Table className="">
+            <Table className="">
         <TableHead className="">
           <TableRow>
             <TableHeadRow columnIndex={0} className="rounded-tl-xl">
@@ -86,7 +87,7 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[]; user: AuthUser }) =
               <TableCell columnIndex={0} className="">
                 {user?.role === 'observador' ? (
                   <Button
-                    className="w-16 h-8 rounded-full bg-burgundy-900 text-white"
+                    className="px-2 py-1 rounded-full bg-burgundy-900 text-white"
                     onClick={() => handleMonitoringClick(fuente)}
                   >
                     Iniciar
@@ -165,7 +166,8 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[]; user: AuthUser }) =
           <MonitoringModal
             fuenteId={selectedFuente.id}
             onClose={closeModals}
-            startMonitoring={startMonitoring}
+            
+            
           />
         </Modal>
       )}

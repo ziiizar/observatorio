@@ -2,15 +2,15 @@
 
 import  Button from '@/components/ui/Button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { stopMonitoring } from '@/services/fuente'
 import { Search } from 'lucide-react'
 
 interface MonitoringModalProps {
   fuenteId: number
   onClose: () => void
-  stopMonitoring: (fuenteId: number) => Promise<{ success?: string; error?: string }>
 }
 
-export default function MonitoringModal({ fuenteId, onClose, stopMonitoring }: MonitoringModalProps) {
+export default function MonitoringModal({ fuenteId, onClose }: MonitoringModalProps) {
   const handleCancel = async () => {
     try {
       const result = await stopMonitoring(fuenteId)
