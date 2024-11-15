@@ -11,7 +11,7 @@ import Button from '@/components/ui/Button'
 import { Fuente } from '@/types/fuente'
 import Modal from '@/components/ui/Modal'
 import EditFuenteForm from '@/components/Fuentes/EditFuenteForm'
-import { deleteFuente, startMonitoring } from '@/services/fuente'
+import { deleteFuente, startMonitoring, stopMonitoring } from '@/services/fuente'
 import { AuthUser } from '@/types/user'
 import { toast } from 'sonner'
 import { DeleteIcon, EditIcon } from '@/Icons/Table'
@@ -35,15 +35,19 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[]; user: AuthUser }) =
 
   const handleMonitoringClick = (fuente: Fuente) => {
     setSelectedFuente(fuente)
-    startMonitoring(fuente.id)
+    // startMonitoring(fuente.id)
     setIsMonitoringModalOpen(true)
   }
 
   const closeModals = () => {
     setIsEditModalOpen(false)
     setIsDeleteModalOpen(false)
-    setIsMonitoringModalOpen(false)
     setSelectedFuente(null)
+  }
+
+  const closeMonitoringModal = (fuenteId: number) => {
+setIsMonitoringModalOpen(false)
+stopMonitoring(fuenteId)
   }
 
   const handleDeleteFuente = async () => {
@@ -165,7 +169,7 @@ const FuenteTable = ({ fuentes, user }: { fuentes: Fuente[]; user: AuthUser }) =
         <Modal onClose={closeModals}>
           <MonitoringModal
             fuenteId={selectedFuente.id}
-            onClose={closeModals}
+            onClose={()=>closeMonitoringModal(selectedFuente.id)}
             
             
           />
