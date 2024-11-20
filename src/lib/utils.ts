@@ -2,13 +2,14 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import axios from "axios";
 import { Registros } from "@/types/registro";
+import { BACKEND_URL } from "@/constants/backendURL";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: BACKEND_URL,
   withCredentials: true,
 });
 

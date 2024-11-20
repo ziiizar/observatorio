@@ -3,10 +3,10 @@
 import { ArrowLeft, ArrowRight } from '@/Icons/Table';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { generatePagination } from '@/lib/utils';
+import { cn, generatePagination } from '@/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function Pagination({ totalPages }: { totalPages: number }) {
+export default function Pagination({ totalPages, className }: { totalPages: number, className?: string }) {
   // NOTE: comment in this code when you get to this point in the course
 
   const pathname = usePathname();
@@ -26,7 +26,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   };
 
   return (
-    <div className="py-2 flex w-full justify-center border-2  border-dusty-gray-300 rounded-b-xl">
+    <div className={cn("py-2 flex w-full justify-center border-2  border-dusty-gray-300 rounded-b-xl", className)}>
       {/* NOTE: comment in this code when you get to this point in the course */}
 
       <div className="inline-flex">

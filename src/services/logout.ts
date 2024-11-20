@@ -1,14 +1,18 @@
+import Cookies from "js-cookie";
 
-import { routes } from "@/constants/routes";
-import { axiosInstance } from "@/lib/utils";
+// import { routes } from "@/constants/routes";
+// import { axiosInstance } from "@/lib/utils";
 
 export const logout = async () => {
   try {
-    const response = await axiosInstance.post("logout");
 
-    if (!response) throw new Error("Error during logout");
-
-    window.location.href = routes.home;
+    Cookies.remove("access_token", { secure: true, sameSite: 'Strict' });
+    Cookies.remove("refresh_token", { secure: true, sameSite: 'Strict' });
+    
+    
+    // const response = await axiosInstance.post("logout");
+    // if (!response) throw new Error("Error during logout");
+    // window.location.href = routes.home;
 
     return { success: "Logout successful" };
   } catch (error) {
