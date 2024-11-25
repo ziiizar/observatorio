@@ -8,8 +8,6 @@ import { revalidatePath } from "next/cache";
 export const updateUser = async (data: TSEditUserSchema) => {
   const { id, email, first_name, last_name, organization, role, username } = data;
 
-  console.log(data);
-  console.log("DATAAAAAAAAAAAAAAA");
   try {
     const response = await axiosInstance.put("edit-user", { id, email, first_name, last_name, organization, role, username });
 
@@ -26,8 +24,6 @@ export const updateUser = async (data: TSEditUserSchema) => {
 export const deleteUser = async (data: TSDeleteUserSchema) => {
   const { id } = data;
 
-  console.log(data);
-  console.log(id);
 
   try {
     await axiosInstance.delete(`delete-user/${id}`);

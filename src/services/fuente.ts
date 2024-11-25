@@ -21,7 +21,6 @@ export const insertFuente = async (data: TSInsertFuenteSchema) => {
     url,
   } = data;
 
-  console.log(data);
 
   try {
     await axiosInstance.post("insert-fuente", {
@@ -55,7 +54,6 @@ export const updateFuente = async (data: TSUpdateFuenteSchema) => {
     url,
   } = data;
 
-  console.log(data);
 
   try {
     await axiosInstance.put("edit-fuente", {
@@ -80,8 +78,6 @@ export const updateFuente = async (data: TSUpdateFuenteSchema) => {
 export const deleteFuente = async (data: TSDeleteFuenteSchema) => {
   const { id } = data;
 
-  console.log(data);
-  console.log(id);
 
   try {
     await axiosInstance.delete(`delete-fuente/${id}`);
@@ -96,8 +92,6 @@ export const deleteFuente = async (data: TSDeleteFuenteSchema) => {
 
 export const startMonitoring = async (fuenteId: number) => {
   try {
-    console.log("Iniciado");
-    console.log(fuenteId);
     const resp = await axiosInstance.get(`start-monitoring/${fuenteId}`)
     return { succes: "Fuente monitoreada" };
   } catch (error) {
@@ -106,8 +100,6 @@ export const startMonitoring = async (fuenteId: number) => {
 };
 export const stopMonitoring = async (fuenteId: number) => {
   try {
-    console.log("Detenido");
-    console.log(fuenteId);
 
     const resp = await axiosInstance.get(`stop-monitoring/${fuenteId}`)
     return { succes: "Monitoreo detenido" };

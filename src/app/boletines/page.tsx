@@ -10,7 +10,6 @@ import { BACKEND_URL } from "@/constants/backendURL";
 export default async function Boletines() {
 
   const {boletines,total_pages, total_boletines}: GetBoletinesResponse = await fetchAllBoletines()
-  console.log(boletines)
 
   return (
     <div className="container mx-auto px-6 py-8 min-h-screen">

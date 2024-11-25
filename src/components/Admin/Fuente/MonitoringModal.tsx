@@ -28,7 +28,6 @@ export default function MonitoringModal({ fuenteId, onClose }: MonitoringModalPr
     }
 
     eventSource.onerror = () => {
-      console.log('Error en la conexión de eventos')
       eventSource.close()
     }
 

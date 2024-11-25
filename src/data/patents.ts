@@ -24,7 +24,6 @@ export const fetchPatents = async ({
     ...(filter && filter), // Agregar filtro dinámicamente
   };
 
-  console.log(params)
 
   const patents = await axiosInstance.get(`patentes`, { params });
   return patents.data;

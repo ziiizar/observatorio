@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 
 export const login = async (data: TSLoginSchema) => {
   const { password, username } = data;
-  console.log(data)
 
   try {
     const response = await axiosInstance.post("login", { password, username });

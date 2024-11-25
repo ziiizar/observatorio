@@ -14,7 +14,6 @@ export const insertEje = async (data: TSInsertEjeSchema) => {
    nombre_eje,esta_activo
   } = data;
 
-  console.log(data);
 
   try {
     await axiosInstance.post("insert-eje", {
@@ -34,7 +33,6 @@ export const updateEje = async (data: TSUpdateEjeSchema) => {
    nombre_eje,esta_activo
   } = data;
 
-  console.log(data);
 
   try {
     await axiosInstance.put("edit-eje", {
@@ -52,8 +50,6 @@ export const updateEje = async (data: TSUpdateEjeSchema) => {
 export const deleteEje = async (data: TSDeleteEjeSchema) => {
   const { id_eje } = data;
 
-  console.log(data)
-  console.log(id_eje)
 
   try {
     await axiosInstance.delete(`delete-eje/${id_eje}`

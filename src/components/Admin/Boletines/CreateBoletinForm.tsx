@@ -39,12 +39,10 @@ const CreateBoletinForm = ({
   });
 
   const onSubmit = async (data: TSCreateBoletinSchema) => {
-    console.log(file);
     const newData = {
       ...data,
       image: file,
     };
-    console.log(newData);
 
     const formData = new FormData();
 
@@ -58,10 +56,7 @@ const CreateBoletinForm = ({
     if (data.attached_document) {
       formData.append("attached_document", data.attached_document); // Añadir documento adjunto si existe
     }
-    console.log("Contenido de FormData:");
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
-  }
+ 
     const resp = await axiosInstance.post("boletines/create", formData, {
       headers: {
         "Content-Type": "multipart/form-data", // Asegurarse de enviar datos como multipart/form-data
@@ -107,7 +102,6 @@ const CreateBoletinForm = ({
     formData.append("image", file);
 
     try {
-      console.log(formData);
     } catch (error) {
       console.error("Error al subir la imagen:", error);
     }

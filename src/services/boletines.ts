@@ -9,7 +9,6 @@ import { revalidatePath } from "next/cache";
 export const createBoletin = async (data: TSCreateBoletinSchema) => {
   const { title, image, theme, published_by, labels, content } = data;
 
-  console.log(data)
 
   try {
     // Asegurarse de que theme y published_by sean números
