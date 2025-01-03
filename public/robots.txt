@@ -1,0 +1,20 @@
+# robots.txt para el Observatorio Tecnológico del MINEM
+
+User-agent: *
+Disallow: /login
+Disallow: /admin/
+Disallow: /unauthorized
+Disallow: /servicios/registros
+Disallow: /servicios/patentes
+Disallow: /servicios/visualizacion
+Disallow: /servicios/fuentes
+Disallow: /admin/fuentes
+Disallow: /admin/usuarios
+Disallow: /admin/estadisticas
+Disallow: /admin/boletines
+Disallow: /admin/fuentes/crear
+Disallow: /admin/usuarios/crear
+Disallow: /admin/estadisticas/crear-eje
+Allow: /
+
+Sitemap: https://observatorio.minem.cu/sitemap.xml

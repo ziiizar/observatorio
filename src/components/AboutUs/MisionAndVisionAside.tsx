@@ -13,14 +13,14 @@ const MisionAndVisionAside = ({setSelectedSection, selectedSection}:{setSelected
 
             color={selectedSection === 'mision' ? 'selected': 'unselected' }
             // image={HealthInsurance} 
-            name="Mision" 
+            name="Misión" 
             onClick={() => setSelectedSection('mision')}
           />
           <AsideCard 
           description="Ser un referente en la divulgación de innovaciones tecnológicas en minería y energía en el país"
           color={selectedSection === 'vision' ? 'selected' : 'unselected'}
             // image={LifeInsurance} 
-            name="Vision" 
+            name="Visión" 
             onClick={() => {setSelectedSection('vision'), console.log('ejecutao')}}
           />
         </section>

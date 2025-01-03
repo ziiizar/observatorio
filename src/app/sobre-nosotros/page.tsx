@@ -4,6 +4,28 @@ import Footer from "@/components/global/Footer";
 import Header from "@/components/global/Header";
 import { cn } from "@/lib/utils";
 import { outfit, zodiak } from "@/styles/fonts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Sobre Nosotros | Observatorio Tecnológico del MINEM',
+  description: 'Conozca más sobre el Observatorio Tecnológico del Ministerio de Energía y Minas (MINEM) de Cuba, nuestra misión, visión y equipo de trabajo.',
+  keywords: 'MINEM, observatorio tecnológico, misión, visión, equipo, Cuba',
+  openGraph: {
+    title: 'Sobre Nosotros | Observatorio Tecnológico del MINEM',
+    description: 'Misión, visión y equipo del Observatorio Tecnológico del MINEM',
+    url: 'https://observatorio.minem.cu/sobre-nosotros',
+    siteName: 'Observatorio Tecnológico del MINEM',
+    images: [
+      {
+        url: 'https://observatorio.minem.cu/sobre-nosotros-og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'es_CU',
+    type: 'website',
+  },
+}
 
 const page = () => {
   return (
