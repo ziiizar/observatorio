@@ -2,11 +2,34 @@ import { Clock, Bell, ArrowRight } from "lucide-react"
 import Button  from "@/components/ui/Button"
 import Link from "next/link"
 import { routes } from "@/constants/routes"
+import { fetchAllBoletines } from "@/data/boletines"
+import { GetBoletinesResponse } from "@/types/boletin"
+import BoletinesSection from "@/components/Boletines/BoletinesSection"
+import { BACKEND_URL } from "@/constants/backendURL";
 
-export default function Boletines() {
+export default async function Boletines() {
+
+  const {boletines,total_pages, total_boletines}: GetBoletinesResponse = await fetchAllBoletines()
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-burgundy-950 to-burgundy-900/90 text-white">
-      <div className="container mx-auto px-4 py-12 lg:py-24">
+    <div className="container mx-auto px-6 py-8 min-h-screen">
+
+<BoletinesSection initialData={{boletines,total_pages, total_boletines}}></BoletinesSection>
+
+{/* 
+      {boletines?.map((boletin)=>(<article key={boletin.id}>
+        <h4>{boletin.title}</h4>
+        <h4>{boletin.theme?.nombre_eje}</h4>
+        {boletin.image && (
+            <img src={`${BACKEND_URL}${boletin.image}`} alt={boletin.title} className="w-64 h-64 object-cover" />
+          )}
+      </article>))} */}
+
+      </div>
+  )
+}
+
+      {/* <div className="container mx-auto px-4 py-12 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter">
@@ -60,7 +83,6 @@ export default function Boletines() {
             </div>
           </article>
         </div>
-      </div>
-    </div>
-  )
-}
+      </div> */}
+
+ 

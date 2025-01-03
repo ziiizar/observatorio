@@ -1,17 +1,18 @@
 import Cookies from "js-cookie";
 
+// import { routes } from "@/constants/routes";
+// import { axiosInstance } from "@/lib/utils";
 
 export const logout = async () => {
   try {
-    // Elimina las cookies de autenticación
+
     Cookies.remove("access_token", { secure: true, sameSite: 'Strict' });
     Cookies.remove("refresh_token", { secure: true, sameSite: 'Strict' });
-
-    // Revalida la ruta actual para asegurarse de que el estado de autenticación se actualice
-    // revalidatePath('/');
-
-    // Redirige al usuario a la página principal (o a la página de inicio de sesión)
-    // redirect(routes.home);
+    
+    
+    // const response = await axiosInstance.post("logout");
+    // if (!response) throw new Error("Error during logout");
+    // window.location.href = routes.home;
 
     return { success: "Logout successful" };
   } catch (error) {

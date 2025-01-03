@@ -15,32 +15,31 @@ const PatentesTable = async ({patentes}: {patentes: Patente[]}) => {
     <Table className="">
       <TableHead className="">
         <TableRow>
-          <TableHeadRow columnIndex={0} className="rounded-tl-xl ">Acciones</TableHeadRow>
-          <TableHeadRow columnIndex={1} className="">Fuente</TableHeadRow>
-          <TableHeadRow columnIndex={2} className="">URL</TableHeadRow>
-          <TableHeadRow columnIndex={3} className="">Resumen</TableHeadRow>
-          <TableHeadRow columnIndex={4} className="">Patent-Office</TableHeadRow>
-          <TableHeadRow columnIndex={5} className="">Claims</TableHeadRow>
-          <TableHeadRow columnIndex={6} className="rounded-tr-xl">Descripción</TableHeadRow>
+          <TableHeadRow columnIndex={0} className="rounded-tl-xl">Fuente</TableHeadRow>
+          <TableHeadRow columnIndex={1} className="">URL</TableHeadRow>
+          <TableHeadRow columnIndex={2} className="">Resumen</TableHeadRow>
+          <TableHeadRow columnIndex={3} className="">Patent-Office</TableHeadRow>
+          <TableHeadRow columnIndex={4} className="">Claims</TableHeadRow>
+          <TableHeadRow columnIndex={5} className="rounded-tr-xl">Descripción</TableHeadRow>
         </TableRow>
       </TableHead>
       <TableBody>
         {patentes.map((patente) => (
           <TableRow className="" key={patente.id}>
-            <TableCell columnIndex={0} className="">
+            {/* <TableCell columnIndex={0} className="">
               {
                 <div className="flex gap-2">
                   <Button className="border-2 size-8 rounded-full border-burgundy-900 text-burgundy-900"><DeleteIcon className={'group-hover:fill-white fill-burgundy-900'}></DeleteIcon></Button>
                   
                 </div>
               }
-            </TableCell>
-            <TableCell columnIndex={1} className="border-l-2 border-dusty-gray-300">{patente.sourceData?.organization}</TableCell>
-            <TableCell columnIndex={2} className="border-l-2 border-dusty-gray-300">{patente.url}</TableCell>
-            <TableCell columnIndex={3} className="border-l-2 border-dusty-gray-300">{patente.abstract}</TableCell>
-            <TableCell columnIndex={4} className="border-l-2 border-dusty-gray-300">{patente.patent_office}</TableCell>
-            <TableCell columnIndex={5} className="border-l-2 border-dusty-gray-300">{patente.claims}</TableCell>
-            <TableCell columnIndex={6} className="border-l-2 border-dusty-gray-300">{patente.description}</TableCell>
+            </TableCell> */}
+            <TableCell columnIndex={0} className="">{patente.sourceData?.organization}</TableCell>
+            <TableCell columnIndex={1} className="border-l-2 border-dusty-gray-300">{patente.url}</TableCell>
+            <TableCell columnIndex={2} className="border-l-2 border-dusty-gray-300">{patente.abstract}</TableCell>
+            <TableCell columnIndex={3} className="border-l-2 border-dusty-gray-300">{patente.patent_office}</TableCell>
+            <TableCell columnIndex={4} className="border-l-2 border-dusty-gray-300">{patente.claims}</TableCell>
+            <TableCell columnIndex={5} className="border-l-2 border-dusty-gray-300">{patente.description}</TableCell>
             
             
             {/* <TableCell className="border-x-2 border-dusty-gray-300">{user.userprofile?.role}</TableCell> */}

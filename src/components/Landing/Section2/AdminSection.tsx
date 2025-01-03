@@ -61,7 +61,7 @@ const AdminSection = () => {
         <div className="flex flex-col gap-2 z-20 p-4 sm:p-6 place-content-end backdrop-blur-sm w-full h-full rounded-xl">
           <strong className={cn("text-2xl sm:text-3xl lg:text-4xl font-semibold", outfit.className)}>Geoportal</strong>
           <p className={cn(zodiak.className, "text-xs sm:text-sm")}>Examina y conoce nuestras ubicaciones más importantes a lo  largo de la isla.</p>
-          <Button className="bg-white text-black w-28 shadow-shadowWhite"><Link href={routes.home}>Explorar</Link></Button>
+          <Button className="bg-white text-black w-28 shadow-shadowWhite"><Link href={routes.geoportal}>Explorar</Link></Button>
         </div>
       </div>
     </>

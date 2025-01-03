@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { EyeOff } from "lucide-react";
 import { Key, UserIcon, Eye } from "@/Icons/Auth";
 import { LoginSchema, TSLoginSchema } from "@/schemas/user";
 import { login } from "@/services/login";
@@ -10,14 +12,16 @@ import Button from "../ui/Button";
 import { routes } from "@/constants/routes";
 import { Email, Facebook, Instagram, Phone, Twitter } from "@/Icons/Social";
 import { Input } from "../ui/Input";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: {  isSubmitting },
+    formState: { isSubmitting },
   } = useForm<TSLoginSchema>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -27,10 +31,18 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: TSLoginSchema) => {
-    const result = await login(data);
-    if (result.success) {
-      router.push(routes.home);
+    const resp = await login(data);
+    if(resp.success){
+      toast.success(resp.success)
+      router.push(routes.home)
     }
+    if(resp.error){
+      toast.error(resp.error)
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -62,13 +74,19 @@ const LoginForm = () => {
             className="outline-none w-full"
             placeholder="Contraseña"
             {...register("password")}
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
           />
-          <Eye />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="focus:outline-none"
+          >
+            {showPassword ? <EyeOff /> : <Eye />}
+          </button>
         </label>
         <Button
-        disabled={isSubmitting}
+          disabled={isSubmitting}
           className="bg-burgundy-900 text-white shadow-shadowRed"
           type="submit"
         >

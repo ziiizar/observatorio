@@ -16,13 +16,26 @@ const PatentesVisualizationPage = ({
 }: {
   patentData: Patente[];
 }) => {
-  // Definimos fieldOptions como un arreglo de las claves de Patente
-  const fieldOptions: (keyof Patente)[] = ["patent_office", "url", "sourceData"];
 
-  // Estado para el campo seleccionado
-  const [selectedField, setSelectedField] = useState<keyof Patente>(fieldOptions[0]);
+  console.log(patentData)
 
-  const handleFieldChange = (value: keyof Patente) => {
+  const fieldOptions: (keyof Patente | "sourceData.organization" | "sourceData.materia" | "sourceData.frequency")[] = [
+    "patent_office",
+    "sourceData.organization",
+    "sourceData.materia",
+    "sourceData.frequency",
+  ];
+  
+  const fieldLabels: Record<typeof fieldOptions[number], string> = {
+    patent_office: "Oficina",
+    "sourceData.organization": "Organización",
+    "sourceData.materia": "Materia",
+    "sourceData.frequency": "Frecuencia",
+  };
+
+  const [selectedField, setSelectedField] = useState<typeof fieldOptions[number]>("patent_office");
+
+  const handleFieldChange = (value: typeof fieldOptions[number]) => {
     setSelectedField(value);
   };
 
@@ -30,25 +43,23 @@ const PatentesVisualizationPage = ({
     <div className="w-full h-full rounded-xl flex flex-col gap-4 p-4">
       <div className="flex">
         <div className="relative flex h-[450px] w-full">
-          <div className="absolute blur-2xl flex w-full h-full">
-            <PatentesPieChart data={patentData} selectedField={selectedField} />
-          </div>
-          <div className="flex w-full h-full">
-            <PatentesPieChart data={patentData} selectedField={selectedField} />
-          </div>
+          <PatentesPieChart data={patentData} selectedField={selectedField} />
         </div>
         <div className="flex flex-col">
           <div className="flex gap-4 mb-4">
             <div>
               <label>Seleccionar Campo:</label>
-              <Select onValueChange={(value) => handleFieldChange(value as keyof Patente)} value={selectedField}>
+              <Select
+                onValueChange={(value) => handleFieldChange(value as typeof fieldOptions[number])}
+                value={selectedField}
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Selecciona un campo" />
                 </SelectTrigger>
                 <SelectContent>
                   {fieldOptions.map((option) => (
                     <SelectItem key={option} value={option}>
-                      {option}
+                      {fieldLabels[option]}
                     </SelectItem>
                   ))}
                 </SelectContent>

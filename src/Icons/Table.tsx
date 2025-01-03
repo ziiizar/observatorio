@@ -93,3 +93,40 @@ export function ArrowRight() {
       </svg>
     );
   }
+
+
+
+export const Descendent = () => (
+  <svg
+  className='fill-burgundy-900 group-hover:fill-white transition-all duration-200 ease-in-out'
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="24"
+    viewBox="0 0 16 16"
+  >
+    <path
+      id="SVGRepo_iconCarrier"
+      fillRule="evenodd"
+      d="M13 12.208V7h-2v5.137l-1.086-1.086L8.5 12.466 12.036 16l3.535-3.535-1.414-1.415zM8 6H0v2h8zm6-3H0v2h14zm2-3H0v2h16zM6 9H0v2h6zm-2 3H0v2h4z"
+    ></path>
+  </svg>
+);
+
+
+export const Ascendent = () => (
+  <svg
+  className='fill-burgundy-900 group-hover:fill-white transition-all duration-200 ease-in-out'
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="24"
+    transform="rotate(180)"
+    viewBox="0 0 16 16"
+  >
+    <path
+      id="SVGRepo_iconCarrier"
+      fillRule="evenodd"
+      d="M13 12.208V7h-2v5.137l-1.086-1.086L8.5 12.466 12.036 16l3.535-3.535-1.414-1.415zM8 6H0v2h8zm6-3H0v2h14zm2-3H0v2h16zM6 9H0v2h6zm-2 3H0v2h4z"
+    ></path>
+  </svg>
+);
+

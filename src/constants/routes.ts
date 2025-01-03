@@ -62,4 +62,20 @@ const ADMIN_ROUTES = [
   routes.crearFuente,
 ];
 
-export { AUTH_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES, ADMIN_ROUTES };
+const DIRECTIVO_ROUTES = [
+  routes.admin,
+  routes.adminFuentes,
+  routes.crearUser,
+  routes.adminUsers,
+  routes.crearFuente,
+];
+
+const OBSERVADOR_ROUTES = [
+  routes.admin,
+  routes.adminFuentes,
+  routes.crearUser,
+  routes.adminUsers,
+  routes.crearFuente,
+];
+
+export { AUTH_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES, ADMIN_ROUTES, DIRECTIVO_ROUTES, OBSERVADOR_ROUTES };

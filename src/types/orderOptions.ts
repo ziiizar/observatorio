@@ -19,6 +19,11 @@ export const orderOptions = {
       nombre_eje: 'Nombre',
       esta_activo:"Estado",
 
+    },
+    BOLETINES: {
+      theme: "Tema",
+      published_by: "Redactor",
+      publication_date: "Fecha"
     }
   };
   

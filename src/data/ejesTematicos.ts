@@ -31,6 +31,5 @@ export const fetchEjesTematicos = async ({
   };
 
   const response = await axiosInstance.get<FetchEjesResponse>('ejes', { params });
-  console.log(response.data);
   return response.data;
 };

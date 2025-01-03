@@ -81,7 +81,6 @@ export const ServicesLinks: Links[] = [
       name: "Boletines",
       href: routes.adminBoletines,
       icon: Boletines,
-  
     },
     // {
     //   name: "Affiliate Program",

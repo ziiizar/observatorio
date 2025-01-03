@@ -144,7 +144,6 @@
   
 //   )
 // }
-
 "use client";
 
 import { Patente } from "@/types/patente";
@@ -155,19 +154,30 @@ export default function PatentesPieChart({
   selectedField,
 }: {
   data: Patente[];
-  selectedField: keyof Patente;
+  selectedField: keyof Patente | "sourceData.organization" | "sourceData.materia" | "sourceData.frequency";
 }) {
   const formattedData = Object.values(
     data.reduce((acc, item) => {
-      const key = item[selectedField] !== null && item[selectedField] !== undefined 
-                  ? String(item[selectedField]) 
-                  : "Desconocido"; // Usa un valor por defecto para null/undefined
+      let key: string;
+
+      if (selectedField.startsWith("sourceData.") && item.sourceData) {
+        // Extraer el subcampo de sourceData
+        const subField = selectedField.split(".")[1];
+        key = item.sourceData[subField] || "Desconocido";
+      } else {
+        // Campo directo en Patente
+        key =
+          item[selectedField] !== null && item[selectedField] !== undefined
+            ? String(item[selectedField])
+            : "Desconocido";
+      }
+
       if (!acc[key]) {
         acc[key] = { id: key, label: key, value: 0 };
       }
-      acc[key].value += 1; // Incrementar el contador para este valor único
+      acc[key].value += 1;
       return acc;
-    }, {} as Record<string, { id: string; label: string; value: number }>)
+    }, {} as Record<string, { id: string; label: string; value: number }>),
   );
 
   return (
@@ -178,13 +188,10 @@ export default function PatentesPieChart({
         innerRadius={0.5}
         padAngle={0.7}
         cornerRadius={3}
-        colors={{ scheme: "nivo" }}
+        activeOuterRadiusOffset={8}
         borderWidth={1}
         borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
         arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor="#333333"
-        arcLinkLabelsThickness={2}
-        arcLinkLabelsColor={{ from: "color" }}
         arcLabelsSkipAngle={10}
         arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
       />

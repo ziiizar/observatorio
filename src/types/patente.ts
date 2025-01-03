@@ -10,6 +10,7 @@ import { Fuente } from "./fuente";
     patent_office: string;
     url: string;
     sourceData?: Fuente | null;
+    fuente: number
   }
   
 

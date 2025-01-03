@@ -5,11 +5,13 @@ export const fetchPatents = async ({
   limit,
   orderBy,
   sortOrder = 'asc',
+  filter,
 }: {
   currentPage?: number;
   limit?: number;
   orderBy?: string;
   sortOrder?: string;
+  filter?: Record<string, string | number>; // Define el filtro como un objeto clave-valor
 }) => {
   const offset = limit ? (currentPage - 1) * limit : 0;
 
@@ -19,15 +21,26 @@ export const fetchPatents = async ({
     offset,
     ...(orderBy && { orderBy }),
     sortOrder,
+    ...(filter && filter), // Agregar filtro dinámicamente
   };
+
 
   const patents = await axiosInstance.get(`patentes`, { params });
   return patents.data;
 };
 
-// Modificar también fetchPatentsTotalPages para ser opcional en el limit
-export const fetchPatentsTotalPages = async ({ limit }: { limit?: number }) => {
-  const params = limit ? { limit } : {};
+export const fetchPatentsTotalPages = async ({
+  limit,
+  filter,
+}: {
+  limit?: number;
+  filter?: Record<string, string | number>;
+}) => {
+  const params = {
+    ...(limit !== undefined && { limit }),
+    ...(filter && filter), // Incluir filtro si está presente
+  };
+
   const totalPatents = await axiosInstance.get(`patentes/total-pages`, { params });
   return totalPatents.data;
 };
